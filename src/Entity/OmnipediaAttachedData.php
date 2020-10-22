@@ -57,7 +57,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ))
         ->setReadOnly(true),
 
-      'type'  => BaseFieldDefinition::create('string')
+      'type'  => BaseFieldDefinition::create('list_string')
         ->setLabel(new TranslatableMarkup('Type'))
         ->setDescription(new TranslatableMarkup(
           'The type of data to attach.'
