@@ -3,11 +3,11 @@
 namespace Drupal\omnipedia_attached_data\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
 
 /**
  * Defines the OmnipediaAttachedData entity.
@@ -25,7 +25,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   },
  * )
  */
-class OmnipediaAttachedData extends ContentEntityBase implements ContentEntityInterface {
+class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttachedDataInterface {
 
   use EntityChangedTrait;
 
