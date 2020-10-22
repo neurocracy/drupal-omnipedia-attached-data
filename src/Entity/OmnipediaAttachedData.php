@@ -68,7 +68,11 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ))
         ->setSetting('max_length', 255)
         ->setRequired(true)
-        ->setTranslatable(true),
+        ->setTranslatable(true)
+        ->setDisplayOptions('form', [
+          'type'    => 'default_widget',
+          'weight'  => -6,
+        ]),
 
       'content'  => BaseFieldDefinition::create('text_long')
         ->setLabel(new TranslatableMarkup('Content'))
@@ -76,7 +80,11 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'The content of the attached data.'
         ))
         ->setRequired(true)
-        ->setTranslatable(true),
+        ->setTranslatable(true)
+        ->setDisplayOptions('form', [
+          'type'    => 'default_widget',
+          'weight'  => -5,
+        ]),
 
       'date_start'  => BaseFieldDefinition::create('datetime')
         ->setLabel(new TranslatableMarkup('Start date'))
