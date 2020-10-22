@@ -63,7 +63,11 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'The type of data to attach.'
         ))
         ->setSetting('max_length', 255)
-        ->setRequired(true),
+        ->setRequired(true)
+        ->setDisplayOptions('form', [
+          'type'    => 'options_buttons',
+          'weight'  => -4,
+        ]),
 
       'target'  => BaseFieldDefinition::create('string')
         ->setLabel(new TranslatableMarkup('Target'))
