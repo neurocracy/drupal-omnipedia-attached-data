@@ -94,12 +94,20 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setLabel(new TranslatableMarkup('Start date'))
         ->setDescription(new TranslatableMarkup(
           'The earliest date this data can be attached to. If this is empty, will always be attached to the earliest available date.'
+        ))
+        ->setDisplayOptions('form', [
+          'type'    => 'default_widget',
+          'weight'  => -3,
         ]),
 
       'date_end'  => BaseFieldDefinition::create('datetime')
         ->setLabel(new TranslatableMarkup('End date'))
         ->setDescription(new TranslatableMarkup(
           'The last date this data can be attached to. If this is empty, will always be attached to the last available date.'
+        ))
+        ->setDisplayOptions('form', [
+          'type'    => 'default_widget',
+          'weight'  => -2,
         ]),
 
       'uid' => BaseFieldDefinition::create('entity_reference')
