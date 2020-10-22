@@ -29,6 +29,10 @@ use Drupal\user\UserInterface;
  *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
  * )
+ *
+ * @todo Make revisionable.
+ *
+ * @todo Make publishable.
  */
 class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttachedDataInterface {
 
