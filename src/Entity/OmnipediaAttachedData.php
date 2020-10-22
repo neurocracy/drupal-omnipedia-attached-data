@@ -56,7 +56,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
       'type'  => BaseFieldDefinition::create('string')
         ->setLabel(new TranslatableMarkup('Type'))
         ->setDescription(new TranslatableMarkup(
-          'The type of the OmnipediaAttachedData entity.'
+          'The type of data to attach.'
         ))
         ->setSetting('max_length', 255)
         ->setRequired(true),
@@ -64,7 +64,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
       'target'  => BaseFieldDefinition::create('string')
         ->setLabel(new TranslatableMarkup('Target'))
         ->setDescription(new TranslatableMarkup(
-          'The target of the OmnipediaAttachedData entity.'
+          'The target to attach data to.'
         ))
         ->setSetting('max_length', 255)
         ->setRequired(true)
@@ -73,7 +73,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
       'content'  => BaseFieldDefinition::create('text_long')
         ->setLabel(new TranslatableMarkup('Content'))
         ->setDescription(new TranslatableMarkup(
-          'The content of the OmnipediaAttachedData entity.'
+          'The content of the attached data.'
         ))
         ->setRequired(true)
         ->setTranslatable(true),
@@ -81,19 +81,19 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
       'date_start'  => BaseFieldDefinition::create('datetime')
         ->setLabel(new TranslatableMarkup('Start date'))
         ->setDescription(new TranslatableMarkup(
-          'The earliest date this OmnipediaAttachedData entity can be attached to. If this is empty, will always be attached to the earliest available date.'
-        )),
+          'The earliest date this data can be attached to. If this is empty, will always be attached to the earliest available date.'
+        ]),
 
       'date_end'  => BaseFieldDefinition::create('datetime')
         ->setLabel(new TranslatableMarkup('End date'))
         ->setDescription(new TranslatableMarkup(
-          'The last date this OmnipediaAttachedData entity can be attached to. If this is empty, will always be attached to the last available date.'
-        )),
+          'The last date this data can be attached to. If this is empty, will always be attached to the last available date.'
+        ]),
 
       'uid' => BaseFieldDefinition::create('entity_reference')
         ->setLabel(new TranslatableMarkup('Author'))
         ->setDescription(new TranslatableMarkup(
-          'The username of the content author.'
+          'The user who authored this attached data.'
         ))
         ->setSetting('target_type', 'user')
         ->setSetting('handler', 'default')
@@ -111,19 +111,19 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
       'langcode'  => BaseFieldDefinition::create('language')
         ->setLabel(new TranslatableMarkup('Language code'))
         ->setDescription(new TranslatableMarkup(
-          'The language code of OmnipediaAttachedData entity.'
+          'The language code of attached data.'
         )),
 
       'created'   => BaseFieldDefinition::create('created')
         ->setLabel(new TranslatableMarkup('Created'))
         ->setDescription(new TranslatableMarkup(
-          'The time that the OmnipediaAttachedData entity was created.'
+          'The time that the attached data was created.'
         )),
 
       'changed'   => BaseFieldDefinition::create('changed')
         ->setLabel(new TranslatableMarkup('Changed'))
         ->setDescription(new TranslatableMarkup(
-          'The time that the OmnipediaAttachedData entity was last edited.'
+          'The time that the attached data was last edited.'
         )),
     ];
   }
