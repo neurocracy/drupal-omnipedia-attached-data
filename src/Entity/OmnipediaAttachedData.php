@@ -21,6 +21,9 @@ use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
  *     "uuid" = "uuid",
  *   },
  *   handlers = {
+ *     "form" = {
+ *       "default" = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
+ *     },
  *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
  * )

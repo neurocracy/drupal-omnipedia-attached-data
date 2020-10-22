@@ -1,0 +1,15 @@
+omnipedia_attached_data.contact_add:
+  path: '/admin/content/attached-data/add'
+  defaults:
+    _entity_form: omnipedia_attached_data.default
+    _title: 'Add attached data'
+  requirements:
+    _entity_create_access: 'omnipedia_attached_data'
+
+entity.omnipedia_attached_data.edit_form:
+  path: '/omnipedia/attached-data/{omnipedia_attached_data}/edit'
+  defaults:
+    _entity_form: omnipedia_attached_data.default
+    _title: 'Edit attached data'
+  requirements:
+    _entity_access: 'omnipedia_attached_data.update'
