@@ -1,0 +1,6 @@
+services:
+
+  # The OmnipediaAttachedData plug-in manager.
+  plugin.manager.omnipedia_attached_data:
+    class: Drupal\omnipedia_attached_data\OmnipediaAttachedDataManager
+    parent: default_plugin_manager
