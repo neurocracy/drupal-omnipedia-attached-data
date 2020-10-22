@@ -1,0 +1,14 @@
+'view omnipedia_attached_data entity':
+  title: View entity content
+
+'add omnipedia_attached_data entity':
+  title: Add entity content
+
+'edit omnipedia_attached_data entity':
+  title: Edit entity content
+
+'delete omnipedia_attached_data entity':
+  title: Delete entity content
+
+'administer omnipedia_attached_data entity':
+  title: Administer settings

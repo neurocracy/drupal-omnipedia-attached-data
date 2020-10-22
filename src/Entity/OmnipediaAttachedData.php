@@ -20,6 +20,9 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "id"   = "id",
  *     "uuid" = "uuid",
  *   },
+ *   handlers = {
+ *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
+ *   },
  * )
  */
 class OmnipediaAttachedData extends ContentEntityBase implements ContentEntityInterface {
