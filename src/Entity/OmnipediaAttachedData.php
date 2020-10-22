@@ -4,10 +4,12 @@ namespace Drupal\omnipedia_attached_data\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Defines the OmnipediaAttachedData entity.
@@ -94,7 +96,17 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'The username of the content author.'
         ))
         ->setSetting('target_type', 'user')
-        ->setSetting('handler', 'default'),
+        ->setSetting('handler', 'default')
+        ->setDisplayOptions('form', [
+          'type'      => 'entity_reference_autocomplete',
+          'settings'  => [
+            'match_operator'  => 'CONTAINS',
+            'match_limit'     => 10,
+            'size'            => 60,
+            'placeholder'     => '',
+          ],
+          'weight'    => -2,
+        ]),
 
       'langcode'  => BaseFieldDefinition::create('language')
         ->setLabel(new TranslatableMarkup('Language code'))
@@ -113,6 +125,54 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setDescription(new TranslatableMarkup(
           'The time that the OmnipediaAttachedData entity was last edited.'
         )),
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwner() {
+    return $this->get('uid')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwnerId() {
+    return $this->get('uid')->target_id;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwnerId($uid) {
+    $this->set('uid', $uid);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwner(UserInterface $account) {
+    $this->set('uid', $account->id());
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * When a new entity instance is added, set the uid entity reference to the
+   * current user as the creator of the instance.
+   */
+  public static function preCreate(
+    EntityStorageInterface $storage, array &$values
+  ) {
+    parent::preCreate($storage, $values);
+
+    $values += [
+      'uid' => \Drupal::currentUser()->id(),
     ];
   }
 
