@@ -7,8 +7,11 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
+use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -63,6 +66,13 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'The type of data to attach.'
         ))
         ->setSetting('max_length', 255)
+        ->setSetting(
+          'allowed_values_function',
+          \get_class() . '::attachedDataTypeAllowedValuesCallback'
+        )
+        ->setDefaultValueCallback(
+          \get_class() . '::attachedDataTypeDefaultValueCallback'
+        )
         ->setRequired(true)
         ->setDisplayOptions('form', [
           'type'    => 'options_buttons',
@@ -197,6 +207,39 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
 
     $values += [
       'uid' => \Drupal::currentUser()->id(),
+    ];
+  }
+
+  /**
+   * Gets the OmnipediaAttachedData plug-in manager service.
+   *
+   * @return \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   *   The OmnipediaAttachedData plug-in manager service.
+   */
+  protected static function attachedDataManager(): OmnipediaAttachedDataManagerInterface {
+    return \Drupal::service('plugin.manager.omnipedia_attached_data');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function attachedDataTypeAllowedValuesCallback(
+    FieldStorageDefinitionInterface $definition,
+    OmnipediaAttachedDataInterface $entity = null,
+    bool &$cacheable = true
+  ): array {
+    return self::attachedDataManager()->getAttachedDataTypeOptionValues();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function attachedDataTypeDefaultValueCallback(
+    OmnipediaAttachedDataInterface $entity,
+    FieldDefinitionInterface $definition
+  ): array {
+    return [
+      'value' => self::attachedDataManager()->getAttachedDataTypeDefaultValue(),
     ];
   }
 

@@ -71,4 +71,36 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     $this->setCacheBackend($cacheBackend, 'omnipedia_attached_data_info');
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachedDataTypeOptionValues(): array {
+    /** @var array */
+    $definitions = $this->getDefinitions();
+
+    /** @var array */
+    $values = [];
+
+    foreach ($definitions as $machineName => $definition) {
+      $values[$machineName] = $definition['title'];
+    }
+
+    return $values;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @todo Implement custom ordering of plug-ins via an admin interface/config.
+   */
+  public function getAttachedDataTypeDefaultValue(): ?string {
+    /** @var array */
+    $definitions = $this->getDefinitions();
+
+    \reset($definitions);
+
+    // Returns the first definition's key as the default value.
+    return \key($definitions);
+  }
+
 }
