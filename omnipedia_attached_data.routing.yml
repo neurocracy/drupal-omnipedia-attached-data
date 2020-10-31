@@ -1,4 +1,4 @@
-omnipedia_attached_data.contact_add:
+omnipedia_attached_data.add_form:
   path: '/admin/content/attached-data/add'
   defaults:
     _entity_form: omnipedia_attached_data.default
