@@ -104,24 +104,18 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'weight'  => -5,
         ]),
 
-      'date_start'  => BaseFieldDefinition::create('datetime')
-        ->setLabel(new TranslatableMarkup('Start date'))
+      'date_range'  => BaseFieldDefinition::create('omnipedia_daterange')
+        ->setLabel(new TranslatableMarkup('Date range'))
         ->setDescription(new TranslatableMarkup(
-          'The earliest date this data can be attached to. If this is empty, will always be attached to the earliest available date.'
+          'The earliest and last dates this data can be attached to. The default start date of "First date" will always be attached to the earliest available date. The default end date of "Last date" will always be attached to the last available date.'
         ))
+        // We only use the date without the time of day.
+        //
+        // @see \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem::defaultStorageSettings()
+        ->setSetting('datetime_type', 'date')
         ->setDisplayOptions('form', [
-          'type'    => 'default_widget',
-          'weight'  => -3,
-        ]),
-
-      'date_end'  => BaseFieldDefinition::create('datetime')
-        ->setLabel(new TranslatableMarkup('End date'))
-        ->setDescription(new TranslatableMarkup(
-          'The last date this data can be attached to. If this is empty, will always be attached to the last available date.'
-        ))
-        ->setDisplayOptions('form', [
-          'type'    => 'default_widget',
-          'weight'  => -2,
+          'type'      => 'omnipedia_daterange_datelist',
+          'weight'    => -3,
         ]),
 
       'uid' => BaseFieldDefinition::create('entity_reference')
