@@ -115,6 +115,10 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setSetting('datetime_type', 'date')
         ->setDisplayOptions('form', [
           'weight'    => -3,
+        ])
+        ->setDisplayOptions('view', [
+          'label'   => 'above',
+          'weight'  => -3,
         ]),
 
       'uid' => BaseFieldDefinition::create('entity_reference')
