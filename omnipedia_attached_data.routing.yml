@@ -13,3 +13,5 @@ entity.omnipedia_attached_data.edit_form:
     _title: 'Edit attached data'
   requirements:
     _entity_access: 'omnipedia_attached_data.update'
+  options:
+    _admin_route: true
