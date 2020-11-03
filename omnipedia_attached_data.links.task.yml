@@ -1,0 +1,5 @@
+entity.omnipedia_attached_data.collection:
+  route_name: entity.omnipedia_attached_data.collection
+  title: 'Attached data'
+  base_route: system.admin_content
+  weight: 100
