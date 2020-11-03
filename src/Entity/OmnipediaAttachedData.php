@@ -114,7 +114,6 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         // @see \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem::defaultStorageSettings()
         ->setSetting('datetime_type', 'date')
         ->setDisplayOptions('form', [
-          'type'      => 'omnipedia_daterange_datelist',
           'weight'    => -3,
         ]),
 
