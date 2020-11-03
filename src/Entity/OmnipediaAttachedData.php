@@ -40,7 +40,8 @@ use Drupal\user\UserInterface;
  *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
  *   links = {
- *     "canonical"  = "/omnipedia/attached-data/{omnipedia_attached_data}"
+ *     "canonical"  = "/omnipedia/attached-data/{omnipedia_attached_data}",
+ *     "edit-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/edit"
  *   },
  * )
  *
