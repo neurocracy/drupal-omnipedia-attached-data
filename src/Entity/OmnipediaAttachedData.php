@@ -34,14 +34,16 @@ use Drupal\user\UserInterface;
  *   },
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "list_builder" = "Drupal\omnipedia_attached_data\Entity\Controller\OmnipediaAttachedDataListBuilder",
  *     "form"         = {
  *       "default" = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
  *     },
- *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
+ *     "access"       = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
  *   links = {
  *     "canonical"  = "/omnipedia/attached-data/{omnipedia_attached_data}",
- *     "edit-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/edit"
+ *     "edit-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/edit",
+ *     "collection" = "/admin/content/attached-data"
  *   },
  * )
  *

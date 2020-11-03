@@ -25,3 +25,11 @@ entity.omnipedia_attached_data.edit_form:
     _entity_access: 'omnipedia_attached_data.update'
   options:
     _admin_route: true
+
+entity.omnipedia_attached_data.collection:
+  path: '/admin/content/attached-data'
+  defaults:
+    _entity_list: 'omnipedia_attached_data'
+    _title: 'Attached data'
+  requirements:
+    _permission: 'administer omnipedia_attached_data entity'
