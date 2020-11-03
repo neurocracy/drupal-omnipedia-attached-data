@@ -1,0 +1,5 @@
+omnipedia_attached_data.add_form:
+  route_name: omnipedia_attached_data.add_form
+  title: 'Add attached data'
+  appears_on:
+    - entity.omnipedia_attached_data.collection
