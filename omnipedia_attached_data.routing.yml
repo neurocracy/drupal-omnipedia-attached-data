@@ -1,3 +1,13 @@
+entity.omnipedia_attached_data.canonical:
+  path: '/omnipedia/attached-data/{omnipedia_attached_data}'
+  defaults:
+    _entity_view: 'omnipedia_attached_data'
+    _title_callback: 'Drupal\omnipedia_attached_data\Controller\OmnipediaAttachedDataController::getAttachedDataTitle'
+  requirements:
+    _entity_access: 'omnipedia_attached_data.view'
+  options:
+    _admin_route: true
+
 omnipedia_attached_data.add_form:
   path: '/admin/content/attached-data/add'
   defaults:

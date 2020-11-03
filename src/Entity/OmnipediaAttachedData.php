@@ -33,10 +33,14 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid",
  *   },
  *   handlers = {
- *     "form" = {
+ *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "form"         = {
  *       "default" = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
  *     },
  *     "access" = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
+ *   },
+ *   links = {
+ *     "canonical"  = "/omnipedia/attached-data/{omnipedia_attached_data}"
  *   },
  * )
  *
