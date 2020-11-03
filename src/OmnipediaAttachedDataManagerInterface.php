@@ -26,4 +26,16 @@ interface OmnipediaAttachedDataManagerInterface {
    */
   public function getAttachedDataTypeDefaultValue(): ?string;
 
+  /**
+   * Get a user-presentable type plug-in label.
+   *
+   * @param string $machineName
+   *   The machine name of the plug-in to return the label of.
+   *
+   * @return string
+   *   The label for the requested plug-in machine name, or an empty string if
+   *   the plug-in doesn't exist.
+   */
+  public function getAttachedDataTypeLabel(string $machineName): string;
+
 }

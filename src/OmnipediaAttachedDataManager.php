@@ -103,4 +103,18 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     return \key($definitions);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachedDataTypeLabel(string $machineName): string {
+    /** @var array */
+    $definitions = $this->getDefinitions();
+
+    if (isset($definitions[$machineName])) {
+      return $definitions[$machineName]['title'];
+    } else {
+      return '';
+    }
+  }
+
 }
