@@ -20,6 +20,13 @@ use Drupal\user\UserInterface;
  * @ContentEntityType(
  *   id           = "omnipedia_attached_data",
  *   label        = @Translation("Omnipedia: Attached data"),
+ *   label_collection = @Translation("Attached data"),
+ *   label_singular   = @Translation("attached data"),
+ *   label_plural     = @Translation("attached data"),
+ *   label_count      = @PluralTranslation(
+ *     singular = "@count attached data item",
+ *     plural   = "@count attached data items"
+ *   ),
  *   base_table   = "omnipedia_attached_data",
  *   entity_keys  = {
  *     "id"   = "id",
