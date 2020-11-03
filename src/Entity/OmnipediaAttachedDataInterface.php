@@ -60,4 +60,36 @@ interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityO
     FieldDefinitionInterface $definition
   ): array;
 
+  /**
+   * Get this OmnipediaAttachedData entity's user-presentable type label.
+   *
+   * @return string
+   *   The type label.
+   */
+  public function getTypeLabel(): string;
+
+  /**
+   * Get this OmnipediaAttachedData entity's user-presentable title.
+   *
+   * @return string
+   *   The entity title.
+   */
+  public function getTitle(): string;
+
+  /**
+   * Get this OmnipediaAttachedData entity's start date.
+   *
+   * @return string
+   *   Either the stored date string or the string 'first' if not set.
+   */
+  public function getStartDate(): string;
+
+  /**
+   * Get this OmnipediaAttachedData entity's end date.
+   *
+   * @return string
+   *   Either the stored date string or the string 'last' if not set.
+   */
+  public function getEndDate(): string;
+
 }

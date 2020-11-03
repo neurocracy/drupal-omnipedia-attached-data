@@ -237,4 +237,41 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
     ];
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getTypeLabel(): string {
+    return self::attachedDataManager()->getAttachedDataTypeLabel(
+      $this->type->value
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTitle(): string {
+    // We use the target field as the title.
+    return $this->target->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getStartDate(): string {
+    /** @var string|null */
+    $value = $this->date_range->value;
+
+    return $value === null ? 'first' : $value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getEndDate(): string {
+    /** @var string|null */
+    $value = $this->date_range->end_value;
+
+    return $value === null ? 'last' : $value;
+  }
+
 }
