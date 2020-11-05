@@ -108,6 +108,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setSetting('max_length', 255)
         ->setRequired(true)
         ->setTranslatable(true)
+        ->addConstraint('OmnipediaAttachedDataTarget')
         ->setDisplayOptions('form', [
           'type'    => 'default_widget',
           'weight'  => -6,
