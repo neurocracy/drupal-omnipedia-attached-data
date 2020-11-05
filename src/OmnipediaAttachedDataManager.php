@@ -117,4 +117,14 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function validateTarget(string $pluginId, string $target): array {
+    /** @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface */
+    $instance = $this->createInstance($pluginId, []);
+
+    return $instance->validateTarget($target);
+  }
+
 }

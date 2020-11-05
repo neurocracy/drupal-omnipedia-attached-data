@@ -38,4 +38,19 @@ interface OmnipediaAttachedDataManagerInterface {
    */
   public function getAttachedDataTypeLabel(string $machineName): string;
 
+  /**
+   * Validate a given target string and return any error messages.
+   *
+   * @param string $pluginId
+   *   The OmnipediaAttachedData plug-in machine name to validate with.
+   *
+   * @param string $target
+   *   The target string to validate.
+   *
+   * @return array
+   *   An array of zero or more localized error messages. If the array is empty,
+   *   no validation errors were reported.
+   */
+  public function validateTarget(string $pluginId, string $target): array;
+
 }
