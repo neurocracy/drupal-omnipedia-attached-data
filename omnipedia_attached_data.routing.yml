@@ -26,6 +26,16 @@ entity.omnipedia_attached_data.edit_form:
   options:
     _admin_route: true
 
+entity.omnipedia_attached_data.delete_form:
+  path: '/omnipedia/attached-data/{omnipedia_attached_data}/delete'
+  defaults:
+    _entity_form: omnipedia_attached_data.delete
+    _title: 'Delete attached data'
+  requirements:
+    _entity_access: 'omnipedia_attached_data.delete'
+  options:
+    _admin_route: true
+
 entity.omnipedia_attached_data.collection:
   path: '/admin/content/attached-data'
   defaults:

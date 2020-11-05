@@ -25,7 +25,7 @@ use Drupal\user\UserInterface;
  *   label_plural     = @Translation("attached data"),
  *   label_count      = @PluralTranslation(
  *     singular = "@count attached data item",
- *     plural   = "@count attached data items"
+ *     plural   = "@count attached data items",
  *   ),
  *   base_table   = "omnipedia_attached_data",
  *   entity_keys  = {
@@ -36,14 +36,16 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\omnipedia_attached_data\Entity\Controller\OmnipediaAttachedDataListBuilder",
  *     "form"         = {
- *       "default" = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
+ *       "default"  = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
+ *       "delete"   = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataDeleteForm",
  *     },
  *     "access"       = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
  *   links = {
- *     "canonical"  = "/omnipedia/attached-data/{omnipedia_attached_data}",
- *     "edit-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/edit",
- *     "collection" = "/admin/content/attached-data"
+ *     "canonical"    = "/omnipedia/attached-data/{omnipedia_attached_data}",
+ *     "edit-form"    = "/omnipedia/attached-data/{omnipedia_attached_data}/edit",
+ *     "delete-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/delete",
+ *     "collection"   = "/admin/content/attached-data",
  *   },
  * )
  *
