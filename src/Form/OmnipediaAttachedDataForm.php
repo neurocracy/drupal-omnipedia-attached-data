@@ -67,6 +67,9 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
+   *
+   * This organizes the secondary options for attached data into groups much
+   * like the node edit form.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
@@ -74,12 +77,38 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
     /* @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $this->entity;
 
-    $form['langcode'] = [
-      '#title'          => $this->t('Language'),
-      '#type'           => 'language_select',
-      '#default_value'  => $entity->getUntranslated()->language()->getId(),
-      '#languages'      => Language::STATE_ALL,
+    $form['advanced'] = [
+      '#type'         => 'vertical_tabs',
+      '#default_tab'  => 'edit-attached-data-information',
     ];
+
+    $form['attached_data_information'] = [
+      '#type'   => 'details',
+      '#title'  => $this->t('Attached data information'),
+      '#group'  => 'advanced',
+      '#weight' => -10,
+
+      'type'        => $form['type'],
+      'date_range'  => $form['date_range'],
+
+      'langcode'    => [
+        '#title'          => $this->t('Language'),
+        '#type'           => 'language_select',
+        '#default_value'  => $entity->getUntranslated()->language()->getId(),
+        '#languages'      => Language::STATE_ALL,
+      ],
+    ];
+
+    $form['authoring_information'] = [
+      '#type'   => 'details',
+      '#title'  => $this->t('Authoring information'),
+      '#group'  => 'advanced',
+
+      'uid'     => $form['uid'],
+    ];
+
+    // Delete the top-level keys now that we've copied them into their groups.
+    unset($form['uid'], $form['type'], $form['date_range']);
 
     return $form;
   }
