@@ -2,14 +2,68 @@
 
 namespace Drupal\omnipedia_attached_data\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityConfirmFormBase;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the OmnipediaAttachedData entity delete form.
+ *
+ * Note that even though ContentEntityForm uses MessengerTrait, which is
+ * supposed to provide the 'messenger' service, the dependency is not saved
+ * unless one calls MessengerTrait::messenger() to get it, and then it uses the
+ * \Drupal static class. Because of this, we instead inject the service into the
+ * form constructor as per Drupal best practices.
+ *
+ * @see \Drupal\Core\Messenger\MessengerTrait::messenger()
+ *   Returns the messenger service using the \Drupal static class rather than
+ *   via dependency injection.
  */
 class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
+
+  /**
+   * Constructs a OmnipediaAttachedDataDeleteForm object.
+   *
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
+   *   The Drupal entity repository service.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleNnfo
+   *   The Drupal entity type bundle service.
+   *
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The Drupal time service.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The Drupal messenger service.
+   */
+  public function __construct(
+    EntityRepositoryInterface     $entityRepository,
+    EntityTypeBundleInfoInterface $entityTypeBundleNnfo = null,
+    TimeInterface                 $time = null,
+    MessengerInterface            $messenger
+  ) {
+    parent::__construct($entityRepository, $entityTypeBundleNnfo, $time);
+
+    // Save dependencies.
+    $this->messenger = $messenger;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity.repository'),
+      $container->get('entity_type.bundle.info'),
+      $container->get('datetime.time'),
+      $container->get('messenger')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -44,11 +98,17 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
 
     $entity->delete();
 
-    $this->logger('omnipedia_attached_data')->notice(
+    /** @var \Drupal\Core\StringTranslation\TranslatableMarkup */
+    $message = $this->t(
       'Deleted attached data "%title".',
       [
         '%title' => $this->entity->getTitle(),
-      ]);
+      ]
+    );
+
+    $this->messenger()->addStatus($message);
+
+    $this->logger('omnipedia_attached_data')->notice($message);
 
     $form_state->setRedirect('entity.omnipedia_attached_data.collection');
   }
