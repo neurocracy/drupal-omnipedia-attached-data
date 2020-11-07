@@ -53,4 +53,25 @@ interface OmnipediaAttachedDataManagerInterface {
    */
   public function validateTarget(string $pluginId, string $target): array;
 
+  /**
+   * Get content matching the given plug-in ID and target string.
+   *
+   * @param string $pluginId
+   *   The OmnipediaAttachedData plug-in machine name to get content for.
+   *
+   * @param string $target
+   *   The target string to get content for.
+   *
+   * @param string|null|\Drupal\Core\Datetime\DrupalDateTime $date
+   *   The date that the content is intended for. This enables content to vary
+   *   based on start and end dates.
+   *
+   * @return string|null
+   *   The string content matching the $target parameter or null if it can't be
+   *   found.
+   */
+  public function getContent(
+    string $pluginId, string $target, $date = null
+  ): ?string;
+
 }
