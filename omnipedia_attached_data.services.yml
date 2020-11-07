@@ -13,3 +13,11 @@ services:
       - '@omnipedia.wiki_node_resolver'
     tags:
       - { name: 'event_subscriber' }
+
+  # Event subscriber to attach data to matching Wikimedia links.
+  omnipedia_attached_data.wikimedia_link_build_event_subscriber:
+    class: Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia\WikimediaLinkBuildEventSubscriber
+    arguments:
+      - '@plugin.manager.omnipedia_attached_data'
+    tags:
+      - { name: 'event_subscriber' }
