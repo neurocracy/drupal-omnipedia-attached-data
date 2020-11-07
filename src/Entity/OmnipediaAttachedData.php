@@ -100,6 +100,10 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setDisplayOptions('form', [
           'type'    => 'options_buttons',
           'weight'  => -4,
+        ])
+        ->setDisplayOptions('view', [
+          'label'   => 'above',
+          'weight'  => -4,
         ]),
 
       'target'  => BaseFieldDefinition::create('string')
@@ -114,6 +118,10 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setDisplayOptions('form', [
           'type'    => 'default_widget',
           'weight'  => -6,
+        ])
+        ->setDisplayOptions('view', [
+          'label'   => 'above',
+          'weight'  => -6,
         ]),
 
       'content'  => BaseFieldDefinition::create('text_long')
@@ -125,6 +133,10 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setTranslatable(true)
         ->setDisplayOptions('form', [
           'type'    => 'default_widget',
+          'weight'  => -5,
+        ])
+        ->setDisplayOptions('view', [
+          'label'   => 'above',
           'weight'  => -5,
         ]),
 
