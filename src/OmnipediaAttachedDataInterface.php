@@ -10,6 +10,30 @@ use Drupal\Core\Form\FormStateInterface;
 interface OmnipediaAttachedDataInterface {
 
   /**
+   * Get a brief summary of what this plug-in does.
+   *
+   * @return string
+   *   A short, single sentence translated string.
+   *
+   * @see \Drupal\filter\Plugin\FilterInterface::tips()
+   *   Equivalent of when $long === false for filter tips.
+   */
+  public function getSummaryItem(): string;
+
+  /**
+   * Get detailed guidelines of how to use this plug-in.
+   *
+   * @return string
+   *   Translated guidelines as a translated string.
+   *
+   * @see \Drupal\filter\Plugin\FilterInterface::tips()
+   *   Equivalent of when $long === true for filter tips.
+   *
+   * @todo Should this allow returning render arrays?
+   */
+  public function getGuidelines(): string;
+
+  /**
    * Validate a given target string and return any error messages.
    *
    * @param string $target

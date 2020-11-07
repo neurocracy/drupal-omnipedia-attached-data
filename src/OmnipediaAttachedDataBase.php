@@ -100,6 +100,22 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
 
   /**
    * {@inheritdoc}
+   *
+   * @todo Make this default to the plug-in's description annotation.
+   */
+  public function getSummaryItem(): string {
+    return '';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getGuidelines(): string {
+    return '';
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function validateTarget(string $target): array {
     return [];
