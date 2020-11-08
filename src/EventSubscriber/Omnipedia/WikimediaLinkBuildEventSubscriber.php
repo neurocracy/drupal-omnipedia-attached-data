@@ -61,8 +61,9 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
     );
 
     if (!empty($attachedDataContent)) {
-      $link->data['attributes']['data-omnipedia-attached-data-content'] =
-        Html::escape($attachedDataContent);
+      $link->data['attributes'][
+        $this->attachedDataManager->getAttachedDataAttributeName()
+      ] = Html::escape($attachedDataContent);
 
       // Save a copy of the attached data content with tags stripped to the
       // title attribute as a fallback if our JavaScript fails for whatever

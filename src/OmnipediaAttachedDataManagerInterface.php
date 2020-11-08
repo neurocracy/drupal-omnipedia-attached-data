@@ -74,4 +74,12 @@ interface OmnipediaAttachedDataManagerInterface {
     string $pluginId, string $target, $date = null
   ): ?string;
 
+  /**
+   * Get the attached data HTML attribute name.
+   *
+   * @return string
+   *   The attached data HTML attribute name.
+   */
+  public function getAttachedDataAttributeName(): string;
+
 }
