@@ -1,15 +1,15 @@
 'view omnipedia_attached_data entity':
-  title: 'View entity content'
+  title: 'View attached data'
   description: 'Whether a user can view standalone attached data entities.'
 
 'add omnipedia_attached_data entity':
-  title: 'Add entity content'
+  title: 'Add attached data'
 
 'edit omnipedia_attached_data entity':
-  title: 'Edit entity content'
+  title: 'Edit attached data'
 
 'delete omnipedia_attached_data entity':
-  title: 'Delete entity content'
+  title: 'Delete attached data'
 
 'administer omnipedia_attached_data entity':
-  title: 'Administer settings'
+  title: 'Administer attached data'
