@@ -44,6 +44,7 @@ use Drupal\user\UserInterface;
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *     },
  *     "access"       = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
+ *     "views_data"   = "Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataViewsData",
  *   },
  *   links = {
  *     "canonical"    = "/omnipedia/attached-data/{omnipedia_attached_data}",
