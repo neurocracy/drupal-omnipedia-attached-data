@@ -38,6 +38,10 @@ use Drupal\user\UserInterface;
  *     "form"         = {
  *       "default"  = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataForm",
  *       "delete"   = "Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataDeleteForm",
+ *       "delete-multiple-confirm" = "Drupal\Core\Entity\Form\DeleteMultipleForm",
+ *     },
+ *     "route_provider" = {
+ *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *     },
  *     "access"       = "Drupal\omnipedia_attached_data\Access\OmnipediaAttachedDataAccessControlHandler",
  *   },
@@ -45,6 +49,7 @@ use Drupal\user\UserInterface;
  *     "canonical"    = "/omnipedia/attached-data/{omnipedia_attached_data}",
  *     "edit-form"    = "/omnipedia/attached-data/{omnipedia_attached_data}/edit",
  *     "delete-form"  = "/omnipedia/attached-data/{omnipedia_attached_data}/delete",
+ *     "delete-multiple-form" = "/admin/content/attached-data/delete-multiple",
  *     "collection"   = "/admin/content/attached-data",
  *   },
  * )
