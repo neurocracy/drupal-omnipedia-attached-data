@@ -296,6 +296,13 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
   /**
    * {@inheritdoc}
    */
+  public function label() {
+    return $this->getTitle() . ' (' . $this->getTypeLabel() . ')';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getStartDate(): string {
     /** @var string|null */
     $value = $this->date_range->value;
