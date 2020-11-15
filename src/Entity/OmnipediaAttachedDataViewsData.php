@@ -41,6 +41,33 @@ class OmnipediaAttachedDataViewsData extends EntityViewsData {
       'id'      => 'omnipedia_attached_data_type',
     ];
 
+    $data['omnipedia_attached_data']['date_range__value']['group'] = $groupName;
+
+    $data['omnipedia_attached_data']['date_range__value']['filter'] = [
+      'title'   => $this->t('Start date'),
+      // This is the help text shown on the plug-in options modal in the Views
+      // UI.
+      'help'    => $this->t('Filter by attached data start date.'),
+      // This is the column in the table that this plug-in operates on.
+      'field'   => 'date_range__value',
+      // This is the @ViewsFilter() annotation value of our plug-in.
+      'id'      => 'omnipedia_date_range_start',
+    ];
+
+    $data['omnipedia_attached_data']['date_range__end_value']['group'] =
+      $groupName;
+
+    $data['omnipedia_attached_data']['date_range__end_value']['filter'] = [
+      'title'   => $this->t('End date'),
+      // This is the help text shown on the plug-in options modal in the Views
+      // UI.
+      'help'    => $this->t('Filter by attached data end date.'),
+      // This is the column in the table that this plug-in operates on.
+      'field'   => 'date_range__end_value',
+      // This is the @ViewsFilter() annotation value of our plug-in.
+      'id'      => 'omnipedia_date_range_end',
+    ];
+
     return $data;
   }
 
