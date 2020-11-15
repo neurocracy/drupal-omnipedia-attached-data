@@ -18,3 +18,4 @@ dependencies:
 config_devel:
   optional:
     - system.action.omnipedia_attached_data_delete_action
+    - views.view.attached_data
