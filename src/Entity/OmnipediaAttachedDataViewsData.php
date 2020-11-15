@@ -71,6 +71,20 @@ class OmnipediaAttachedDataViewsData extends EntityViewsData {
       'id'      => 'omnipedia_date_range_end',
     ];
 
+    $data['omnipedia_attached_data']['uid']['group'] =
+      $groupName;
+
+    $data['omnipedia_attached_data']['uid']['filter'] = [
+      'title'   => $this->t('Author'),
+      // This is the help text shown on the plug-in options modal in the Views
+      // UI.
+      'help'    => $this->t('Filter by attached data author.'),
+      // This is the column in the table that this plug-in operates on.
+      'field'   => 'uid',
+      // This is the @ViewsFilter() annotation value of the plug-in to use.
+      'id'      => 'user_name',
+    ];
+
     return $data;
   }
 
