@@ -11,6 +11,9 @@ class OmnipediaAttachedDataViewsData extends EntityViewsData {
 
   /**
    * {@inheritdoc}
+   *
+   * @see \hook_views_data()
+   *   Documents the data structure returned by this method.
    */
   public function getViewsData() {
     /** @var array */
