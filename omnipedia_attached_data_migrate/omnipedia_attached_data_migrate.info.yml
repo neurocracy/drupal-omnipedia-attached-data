@@ -1,0 +1,16 @@
+name: Omnipedia - Attached data migrate
+type: module
+description: Provides attached data entity migration from Drupal 7.
+package: Omnipedia
+core: 8.x
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+  - omnipedia_attached_data:omnipedia_attached_data
+
+config_devel:
+  install:
+    - migrate_plus.migration_group.d7_omnipedia_attached_data
+    - migrate_plus.migration.d7_omnipedia_attached_data

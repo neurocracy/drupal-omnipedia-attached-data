@@ -1,0 +1,20 @@
+id: d7_omnipedia_attached_data
+label: 'Omnipedia attached data Drupal 7 migration'
+description: 'Migration of Omnipedia attached data entities from Drupal 7.'
+source_type: 'Drupal 7'
+
+shared_configuration:
+  source:
+    # This is the database connection to use for this migration group. Make sure
+    # this is defined in settings.php or a file included by settings.php. You'll
+    # get an error if this database connection isn't defined. Also note that
+    # 'key' refers to the top-level database, while 'target' refers to the
+    # second level, the latter of which you don't need to specify unless you
+    # have multiple replica databases. We want to use 'key'. In summary:
+    # $databases['key']['target'] in settings.php
+    key: migrate_drupal7
+
+dependencies:
+  enforced:
+    module:
+      - omnipedia_attached_data_migrate
