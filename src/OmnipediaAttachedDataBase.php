@@ -122,6 +122,27 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
   }
 
   /**
+   * Alter the target string before it's used to match attached data.
+   *
+   * Override this method to perform any alterations needed.
+   *
+   * @param string $target
+   *   The target string.
+   *
+   * @param string|null|\Drupal\Core\Datetime\DrupalDateTime $date
+   *   The date that the content is intended for.
+   *
+   * @return string
+   *   The target string with any alterations.
+   *
+   * @todo Should this method have a more specific name? What about for
+   *   validateTarget(), etc.?
+   */
+  protected function alterTarget(string $target, $date): string {
+    return $target;
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @todo Can we instead return a render array rather than rendering here?
@@ -137,7 +158,9 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     $storage = $this->entityTypeManager->getStorage('omnipedia_attached_data');
 
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
-    $entities = $storage->loadByProperties(['target' => $target]);
+    $entities = $storage->loadByProperties([
+      'target' => $this->alterTarget($target, $date),
+    ]);
 
     /** @var string|null */
     $markup = null;
