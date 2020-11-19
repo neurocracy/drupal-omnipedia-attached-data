@@ -75,6 +75,14 @@ interface OmnipediaAttachedDataManagerInterface {
   ): ?string;
 
   /**
+   * Get the attached data title HTML attribute name.
+   *
+   * @return string
+   *   The attached data title HTML attribute name.
+   */
+  public function getAttachedDataTitleAttributeName(): string;
+
+  /**
    * Get the attached data content HTML attribute name.
    *
    * @return string
