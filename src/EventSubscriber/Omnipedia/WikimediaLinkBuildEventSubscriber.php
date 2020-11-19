@@ -62,7 +62,7 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
 
     if (!empty($attachedDataContent)) {
       $link->data['attributes'][
-        $this->attachedDataManager->getAttachedDataAttributeName()
+        $this->attachedDataManager->getAttachedDataContentAttributeName()
       ] = Html::escape($attachedDataContent);
 
       // Save a copy of the attached data content with tags stripped to the

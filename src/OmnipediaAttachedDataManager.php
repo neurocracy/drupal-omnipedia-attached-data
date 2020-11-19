@@ -142,7 +142,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   /**
    * {@inheritdoc}
    */
-  public function getAttachedDataAttributeName(): string {
+  public function getAttachedDataContentAttributeName(): string {
     return 'data-omnipedia-attached-data-content';
   }
 

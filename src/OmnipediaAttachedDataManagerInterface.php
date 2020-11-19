@@ -75,11 +75,11 @@ interface OmnipediaAttachedDataManagerInterface {
   ): ?string;
 
   /**
-   * Get the attached data HTML attribute name.
+   * Get the attached data content HTML attribute name.
    *
    * @return string
-   *   The attached data HTML attribute name.
+   *   The attached data content HTML attribute name.
    */
-  public function getAttachedDataAttributeName(): string;
+  public function getAttachedDataContentAttributeName(): string;
 
 }
