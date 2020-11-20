@@ -2,6 +2,7 @@
 
 namespace Drupal\omnipedia_attached_data;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -152,6 +153,35 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    */
   public function getAttachedDataContentAttributeName(): string {
     return 'data-omnipedia-attached-data-content';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachments(): array {
+    /** @var array */
+    $attachments = [
+      'drupalSettings' => ['omnipedia' => ['attachedData' => [
+        'titleAttributeName'    => $this->getAttachedDataTitleAttributeName(),
+        'contentAttributeName'  => $this->getAttachedDataContentAttributeName(),
+      ]]],
+    ];
+
+    /** @var array */
+    $definitions = $this->getDefinitions();
+
+    foreach ($definitions as $pluginId => $definition) {
+      /** @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface */
+      $instance = $this->createInstance($pluginId, []);
+
+      /** @var array */
+      $attachments = NestedArray::mergeDeep(
+        $attachments,
+        $instance->getAttachements()
+      );
+    }
+
+    return $attachments;
   }
 
 }

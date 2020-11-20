@@ -190,4 +190,11 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     return $markup;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachements(): array {
+    return [];
+  }
+
 }

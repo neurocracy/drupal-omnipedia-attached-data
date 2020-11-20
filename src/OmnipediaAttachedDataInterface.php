@@ -61,4 +61,14 @@ interface OmnipediaAttachedDataInterface {
    */
   public function getContent(string $target, $date = null): ?string;
 
+  /**
+   * Get attachments (libraries and settings) for this plug-in.
+   *
+   * @return array
+   *   An array of attachments.
+   *
+   * @see https://www.drupal.org/docs/creating-custom-modules/adding-stylesheets-css-and-javascript-js-to-a-drupal-module
+   */
+  public function getAttachements(): array;
+
 }
