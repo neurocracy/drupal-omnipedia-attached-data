@@ -50,7 +50,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
     );
 
     // Save dependencies.
-    $this->wikimediaLink      = $wikimediaLink;
+    $this->wikimediaLink = $wikimediaLink;
   }
 
   /**
@@ -96,6 +96,16 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
     // authored with underscores, but attached data is authored with spaces, so
     // we replace underscores with spaces here.
     return \str_replace('_', ' ', $target);
+  }
+
+  /**
+   * Get the HTML data attribute name that identifies a Wikimedia link.
+   *
+   * @return string
+   *   The HTML data attribute name.
+   */
+  public static function getIsWikimediaLinkAttributeName(): string {
+    return 'data-is-wikimedia-link';
   }
 
 }

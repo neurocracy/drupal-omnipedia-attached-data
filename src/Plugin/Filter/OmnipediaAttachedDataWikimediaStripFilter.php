@@ -2,11 +2,10 @@
 
 namespace Drupal\omnipedia_attached_data\Plugin\Filter;
 
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\WikimediaLink;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -18,57 +17,8 @@ use Symfony\Component\DomCrawler\Crawler;
  *   description = @Translation("This strips href attributes from Wikimedia links that have attached data. This should be placed <strong>after</strong> the Markdown filter in the processing order."),
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE
  * )
- *
- * @todo Can most of this functionality be moved to the Wikimedia attached data
- *   plug-in and abstracted to be useful to other plug-ins?
  */
-class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase implements ContainerFactoryPluginInterface {
-
-  /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
-   */
-  protected $attachedDataManager;
-
-  /**
-   * Constructs this filter object.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plug-in instance.
-   *
-   * @param string $pluginID
-   *   The plugin_id for the plug-in instance.
-   *
-   * @param array $pluginDefinition
-   *   The plug-in implementation definition. PluginBase defines this as mixed,
-   *   but we should always have an array so the type is set.
-   *
-   * @param \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface $attachedDataManager
-   *   The OmnipediaAttachedData plug-in manager.
-   */
-  public function __construct(
-    array $configuration, string $pluginID, array $pluginDefinition,
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
-  ) {
-    parent::__construct($configuration, $pluginID, $pluginDefinition);
-
-    // Save dependencies.
-    $this->attachedDataManager = $attachedDataManager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(
-    ContainerInterface $container,
-    array $configuration, $pluginID, $pluginDefinition
-  ) {
-    return new static(
-      $configuration, $pluginID, $pluginDefinition,
-      $container->get('plugin.manager.omnipedia_attached_data')
-    );
-  }
+class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase {
 
   /**
    * {@inheritdoc}
@@ -83,9 +33,10 @@ class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase implements Co
       '</div>'
     );
 
-    $linkCrawler = $rootCrawler->filter('a[' .
-      $this->attachedDataManager->getAttachedDataAttributeName() .
-    ']');
+    /** @var \Symfony\Component\DomCrawler\Crawler */
+    $linkCrawler = $rootCrawler->filter(
+      'a[' . WikimediaLink::getIsWikimediaLinkAttributeName() . ']'
+    );
 
     foreach ($linkCrawler as $link) {
       $link->removeAttribute('href');
