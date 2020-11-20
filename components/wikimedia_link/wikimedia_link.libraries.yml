@@ -1,0 +1,5 @@
+component.wikimedia_link:
+  js:
+    wikimedia_link.js: {}
+  dependencies:
+    - ambientimpact_ux/component.content_popup

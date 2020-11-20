@@ -12,6 +12,7 @@ dependencies:
   - drupal:text
   - drupal:user
   - hook_event_dispatcher:preprocess_event_dispatcher
+  - ambientimpact_ux:ambientimpact_ux
   - omnipedia_content:omnipedia_content
   - omnipedia_core:omnipedia_core
 

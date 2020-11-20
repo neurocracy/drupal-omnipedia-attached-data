@@ -108,4 +108,19 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
     return 'data-is-wikimedia-link';
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachements(): array {
+    return [
+      'library' => [
+        'omnipedia_attached_data/component.wikimedia_link',
+      ],
+      'drupalSettings' => ['omnipedia' => ['attachedData' => [
+        'isWikimediaLinkAttributeName' =>
+          self::getIsWikimediaLinkAttributeName(),
+      ]]],
+    ];
+  }
+
 }
