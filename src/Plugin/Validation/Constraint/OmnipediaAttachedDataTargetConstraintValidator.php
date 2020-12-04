@@ -56,6 +56,7 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
     foreach ($value as $delta => $item) {
       // Have the plug-in manager validate the target with the appropriate
       // plug-in.
+      /** @var \Drupal\Core\StringTranslation\TranslatableMarkup[] */
       $errors = $this->attachedDataManager->validateTarget(
         $typePluginId, $item->value
       );
