@@ -47,7 +47,7 @@ interface OmnipediaAttachedDataManagerInterface {
    * @param string $target
    *   The target string to validate.
    *
-   * @return array
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup[]
    *   An array of zero or more localized error messages. If the array is empty,
    *   no validation errors were reported.
    */
