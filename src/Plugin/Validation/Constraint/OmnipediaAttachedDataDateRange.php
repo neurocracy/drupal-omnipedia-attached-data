@@ -23,6 +23,6 @@ class OmnipediaAttachedDataDateRange extends Constraint {
    *
    * @var string
    */
-  public $message = 'The date range overlaps with <a href="@entityUrl">%entityLabel</a> (%startDate to %endDate).';
+  public $message = 'The date range overlaps with <a href=":entityUrl">%entityLabel</a> (%startDate to %endDate).';
 
 }

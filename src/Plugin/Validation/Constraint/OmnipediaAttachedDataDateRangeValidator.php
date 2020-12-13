@@ -102,7 +102,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
         $this->context->addViolation(
           $constraint->message, [
             '%entityLabel'  => $otherEntity->label(),
-            '@entityUrl'    => $otherEntity->url(),
+            ':entityUrl'    => $otherEntity->url(),
             '%startDate'    => $this->timeline->getDateFormatted(
               $otherStartDate, 'short'
             ),
