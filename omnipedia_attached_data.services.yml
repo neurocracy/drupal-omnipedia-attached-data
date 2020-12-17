@@ -4,6 +4,11 @@ services:
   plugin.manager.omnipedia_attached_data:
     class: Drupal\omnipedia_attached_data\OmnipediaAttachedDataManager
     parent: default_plugin_manager
+    calls:
+      -
+        - setAddtionalDependencies
+        -
+          - '@config.factory'
 
   # Event subscriber to add attached data cache tags to appropriate fields.
   omnipedia_attached_data.attached_data_cache_tags_preprocess_field_event_subscriber:

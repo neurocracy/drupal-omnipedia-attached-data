@@ -2,10 +2,53 @@
 
 namespace Drupal\omnipedia_attached_data;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+
 /**
  * Defines an interface for OmnipediaAttachedData plug-in managers.
  */
 interface OmnipediaAttachedDataManagerInterface {
+
+  /**
+   * Set additional dependencies.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   *   The Drupal configuration object factory service.
+   *
+   * @see https://symfony.com/doc/3.4/service_container/parent_services.html#overriding-parent-dependencies
+   */
+  public function setAddtionalDependencies(
+    ConfigFactoryInterface $configFactory
+  ): void;
+
+  /**
+   * Get the attached data settings configuration name.
+   *
+   * @return string
+   *   The attached data settings configuration name.
+   */
+  public function getAttachedDataSettingsConfigName(): string;
+
+  /**
+   * Save attached data type weights.
+   *
+   * @param int[] $types
+   *   An array of integer weights, keyed by attached data type machine names.
+   */
+  public function saveAttachedDataTypeWeights(array $types): void;
+
+  /**
+   * Get attached data types.
+   *
+   * @param bool $sorted
+   *   Whether the returned type array should be sorted by the types' weights.
+   *   Defaults to true.
+   *
+   * @return array
+   *   An array of zero or more attached data types, keyed by their machine
+   *   names, each containing an array with 'title' and 'weight' items.
+   */
+  public function getAttachedDataTypes(bool $sorted = true): array;
 
   /**
    * Get allowed option values for the attached data 'type' field.

@@ -1,0 +1,5 @@
+omnipedia_attached_data.configuration:
+  title: 'Attached data'
+  parent: system.admin_config_content
+  description: 'Configure Omnipedia attached data.'
+  route_name: omnipedia_attached_data.configuration

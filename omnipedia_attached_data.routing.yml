@@ -43,3 +43,11 @@ entity.omnipedia_attached_data.collection:
     _title: 'Attached data'
   requirements:
     _permission: 'administer omnipedia_attached_data entity'
+
+omnipedia_attached_data.configuration:
+  path: '/admin/config/content/attached-data'
+  defaults:
+    _form: '\Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataConfigurationForm'
+    _title: 'Attached data configuration'
+  requirements:
+    _permission: 'administer omnipedia_attached_data entity'

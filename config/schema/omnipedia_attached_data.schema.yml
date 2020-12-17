@@ -1,0 +1,9 @@
+omnipedia_attached_data.settings:
+  type: config_object
+  label: 'Omnipedia attached data settings'
+  mapping:
+    type_weights:
+      type: sequence
+      label: 'The weights of attached data types relative to one another'
+      sequence:
+        type: integer

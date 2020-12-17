@@ -4,6 +4,7 @@ namespace Drupal\omnipedia_attached_data;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\omnipedia_attached_data\Annotation\OmnipediaAttachedData as OmnipediaAttachedDataAnnotation;
@@ -14,6 +15,20 @@ use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
  * The OmnipediaAttachedData plug-in manager.
  */
 class OmnipediaAttachedDataManager extends DefaultPluginManager implements OmnipediaAttachedDataManagerInterface {
+
+  /**
+   * The attached data configuration settings name.
+   *
+   * @var string
+   */
+  protected const SETTINGS_CONFIG_NAME = 'omnipedia_attached_data.settings';
+
+  /**
+   * The Drupal configuration object factory service.
+   *
+   * @var \Drupal\Core\Cache\CacheBackendInterface
+   */
+  protected $configFactory;
 
   /**
    * Creates the discovery object.
@@ -75,15 +90,128 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   /**
    * {@inheritdoc}
    */
-  public function getAttachedDataTypeOptionValues(): array {
+  public function setAddtionalDependencies(
+    ConfigFactoryInterface $configFactory
+  ): void {
+    $this->configFactory = $configFactory;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachedDataSettingsConfigName(): string {
+    return self::SETTINGS_CONFIG_NAME;
+  }
+
+  /**
+   * Sort attached data types by their weights.
+   *
+   * @param array[] &$types
+   *   Attached data types, keyed by their machine name and values being an
+   *   array containing at least a 'weight' key.
+   *
+   * @see Drupal\Component\Utility\SortArray::sortByWeightElement()
+   *
+   * @see https://www.drupal.org/node/2181331
+   */
+  protected function sortAttachedDataTypes(array &$types): void {
+    \uasort(
+      $types,
+      ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']
+    );
+  }
+
+  /**
+   * Get attached data type weights.
+   *
+   * @return int[]
+   *   An array of integer weights, keyed by attached data type machine names.
+   */
+  protected function getAttachedDataTypeWeights(): array {
+    /** @var array|null */
+    $weightConfig = $this->configFactory
+      ->get($this->getAttachedDataSettingsConfigName())->get('type_weights');
+
+    if (!\is_array($weightConfig)) {
+      return [];
+    }
+
+    return $weightConfig;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function saveAttachedDataTypeWeights(array $types): void {
+    /** @var array */
+    $existingTypes = $this->getAttachedDataTypes(false);
+
+    /** @var array */
+    $typeWeights = [];
+
+    foreach ($existingTypes as $machineName => $typeSettings) {
+      if (!isset($existingTypes[$machineName])) {
+        continue;
+      }
+
+      $typeWeights[$machineName] = $types[$machineName];
+    }
+
+    $this->configFactory
+      ->getEditable(
+        $this->getAttachedDataSettingsConfigName()
+      )
+      ->set('type_weights', $typeWeights)
+      ->save();
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @todo Can we cache most of this or is the performance impact negligible?
+   */
+  public function getAttachedDataTypes(bool $sorted = true): array {
     /** @var array */
     $definitions = $this->getDefinitions();
 
     /** @var array */
-    $values = [];
+    $types = [];
+
+    /** @var array */
+    $weights = $this->getAttachedDataTypeWeights();
 
     foreach ($definitions as $machineName => $definition) {
-      $values[$machineName] = $definition['title'];
+      /** @var array */
+      $types[$machineName] = [
+        'title' => $definition['title'],
+      ];
+
+      if (isset($weights[$machineName])) {
+        $types[$machineName]['weight'] = $weights[$machineName];
+      } else {
+        $types[$machineName]['weight'] = '0';
+      }
+    }
+
+    if ($sorted === true) {
+      $this->sortAttachedDataTypes($types);
+    }
+
+    return $types;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAttachedDataTypeOptionValues(): array {
+    /** @var array */
+    $types = $this->getAttachedDataTypes();
+
+    /** @var array */
+    $values = [];
+
+    foreach ($types as $machineName => $typeSettings) {
+      $values[$machineName] = $typeSettings['title'];
     }
 
     return $values;
@@ -91,17 +219,15 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
 
   /**
    * {@inheritdoc}
-   *
-   * @todo Implement custom ordering of plug-ins via an admin interface/config.
    */
   public function getAttachedDataTypeDefaultValue(): ?string {
     /** @var array */
-    $definitions = $this->getDefinitions();
+    $types = $this->getAttachedDataTypes();
 
-    \reset($definitions);
+    \reset($types);
 
-    // Returns the first definition's key as the default value.
-    return \key($definitions);
+    // Returns the first types's machine name as the default value.
+    return \key($types);
   }
 
   /**
