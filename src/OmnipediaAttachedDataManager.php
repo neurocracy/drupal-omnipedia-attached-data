@@ -189,7 +189,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
       if (isset($weights[$machineName])) {
         $types[$machineName]['weight'] = $weights[$machineName];
       } else {
-        $types[$machineName]['weight'] = '0';
+        $types[$machineName]['weight'] = 0;
       }
     }
 
