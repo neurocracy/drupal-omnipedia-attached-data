@@ -61,12 +61,14 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
       'wikimedia_link', $event->getPrefixedUrl(), 'current'
     );
 
-    if (!empty($attachedDataContent)) {
-      // Flag to indicate this a Wikimedia link.
-      $link->data['attributes'][
-        WikimediaLink::getIsWikimediaLinkAttributeName()
-      ] = 'true';
+    // Flag to indicate this a Wikimedia link. Note that we add this attribute
+    // even if don't find any matching attached data so the filter to strip
+    // hrefs can still find and alter them.
+    $link->data['attributes'][
+      WikimediaLink::getIsWikimediaLinkAttributeName()
+    ] = 'true';
 
+    if (!empty($attachedDataContent)) {
       $link->data['attributes'][
         $this->attachedDataManager->getAttachedDataTitleAttributeName()
       ] = Html::escape($event->getArticleTitle());
