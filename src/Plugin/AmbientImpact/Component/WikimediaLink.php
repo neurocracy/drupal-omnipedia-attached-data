@@ -9,9 +9,9 @@ use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\WikimediaLink a
  * Wikimedia link component.
  *
  * @Component(
- *   id = "wikimedia_link",
- *   title = @Translation("Wikimedia link"),
- *   description = @Translation("Provides content pop-ups for Wikimedia links that have data attached.")
+ *   id           = "wikimedia_link",
+ *   title        = @Translation("Wikimedia link"),
+ *   description  = @Translation("Provides content pop-ups for Wikimedia links that have data attached.")
  * )
  */
 class WikimediaLink extends ComponentBase {

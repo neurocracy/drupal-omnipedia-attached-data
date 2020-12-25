@@ -12,10 +12,10 @@ use Symfony\Component\DomCrawler\Crawler;
  * Provides a filter to strip Wikimedia attached data link href attributes.
  *
  * @Filter(
- *   id = "omnipedia_attached_data_wikimedia_strip",
- *   title = @Translation("Omnipedia: Strip Wikimedia attached data link href attributes"),
- *   description = @Translation("This strips href attributes from Wikimedia links that have attached data. This should be placed <strong>after</strong> the Markdown filter in the processing order."),
- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE
+ *   id           = "omnipedia_attached_data_wikimedia_strip",
+ *   title        = @Translation("Omnipedia: Strip Wikimedia attached data link href attributes"),
+ *   description  = @Translation("This strips href attributes from Wikimedia links that have attached data. This should be placed <strong>after</strong> the Markdown filter in the processing order."),
+ *   type         = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE
  * )
  */
 class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase {
