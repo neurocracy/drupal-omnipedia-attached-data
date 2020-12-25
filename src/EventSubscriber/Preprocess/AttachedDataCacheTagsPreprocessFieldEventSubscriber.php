@@ -97,7 +97,7 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
 
     // Get the entity type definition so that we can get the list cache tag.
     // This is considered a best practice over hard coding the tag.
-    /** @var Drupal\Core\Entity\EntityTypeInterface|null */
+    /** @var \Drupal\Core\Entity\EntityTypeInterface|null */
     $entityType = $this->entityTypeManager->getDefinition(
       'omnipedia_attached_data'
     );
