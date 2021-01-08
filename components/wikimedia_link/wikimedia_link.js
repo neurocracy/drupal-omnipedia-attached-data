@@ -154,15 +154,36 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
       });
 
       aiContentPopUp.addItems($links, {tooltip: {
-        // We currently have serious layout issues with tooltips being inserted
-        // inside infoboxes, and since they don't currently contain interactive
-        // elements, they can be inserted at the end of the document.
-        insertAfterElement: false,
-        tippy: {
-          // This prevents the tooltip taking focus, which would mess up the
-          // keyboard tabbing order when it opens and then closes, due to being
-          // out of the tabbing order.
-          interactive: false
+        insertCallback: function($tooltip, $trigger) {
+          /**
+           * The nearest ancestor element that tooltips should be placed after.
+           *
+           * This avoids issues with inheriting formatting and font size from
+           * elements that the tooltip may be placed inside of, by placing the
+           * tooltip just after these elements.
+           *
+           * @type {jQuery}
+           */
+          var $container = $trigger.closest([
+            '.omnipedia-infobox',
+            '.omnipedia-media-group',
+            '.omnipedia-media',
+            'strong',
+            'em',
+            'sup',
+          ].join(','));
+
+          // If one of the above containers contains the trigger, insert the
+          // tooltip after the container.
+          if ($container.length > 0) {
+            $tooltip.insertAfter($container);
+
+            return;
+          }
+
+          // If none of the above containers are found, just insert the tooltip
+          // after the triggering element.
+          $tooltip.insertAfter($trigger);
         }
       }});
     },
