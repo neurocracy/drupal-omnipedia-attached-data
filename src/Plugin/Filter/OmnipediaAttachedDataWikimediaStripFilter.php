@@ -29,7 +29,7 @@ class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase {
       // The <div> is to prevent the PHP DOM automatically wrapping any
       // top-level text content in a <p> element.
       '<div id="omnipedia-attached-data-wikimedia-strip-filter-root">' .
-        $text .
+        (string) $text .
       '</div>'
     );
 
