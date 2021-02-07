@@ -11,6 +11,23 @@ function omnipedia_attached_data_help(
 ) {
   switch ($routeName) {
     case 'omnipedia_attached_data.configuration':
+      /** @var \Drupal\Core\Url */
+      $collectionUrl = Url::fromRoute(
+        'entity.omnipedia_attached_data.collection'
+      );
+
+      if ($collectionUrl->access() === true) {
+        return '<p>' . \t(
+          'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data. <a href=":collectionUrl">View attached data</a>.',
+          [':collectionUrl' => $collectionUrl->toString()]
+        ) . '</p>';
+
+      } else {
+        return '<p>' . \t(
+          'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data.'
+        ) . '</p>';
+      }
+
       return '<p>' . \t(
         'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data. <a href=":collectionUrl">View attached data</a>.',
         [
@@ -21,14 +38,22 @@ function omnipedia_attached_data_help(
       ) . '</p>';
 
     case 'entity.omnipedia_attached_data.collection':
-      return '<p>' . \t(
-        'This lists all attached data that has been authored. See also the <a href=":configurationUrl">attached data configuration</a>.',
-        [
-          ':configurationUrl' =>
-            Url::fromRoute('omnipedia_attached_data.configuration')
-            ->toString(),
-        ]
-      ) . '</p>';
+      /** @var \Drupal\Core\Url */
+      $configurationUrl = Url::fromRoute(
+        'omnipedia_attached_data.configuration'
+      );
+
+      if ($configurationUrl->access() === true) {
+        return '<p>' . \t(
+          'This lists all attached data that has been authored. See also the <a href=":configurationUrl">attached data configuration</a>.',
+          [':configurationUrl' => $configurationUrl->toString()]
+        ) . '</p>';
+
+      } else {
+        return '<p>' . \t(
+          'This lists all attached data that has been authored.'
+        ) . '</p>';
+      }
   }
 
 }

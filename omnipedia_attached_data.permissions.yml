@@ -13,3 +13,8 @@
 
 'administer omnipedia_attached_data entity':
   title: 'Administer attached data'
+  description: 'Access the attached data overview and perform tasks on attached data.'
+
+'configure omnipedia_attached_data entity':
+  title: 'Configure attached data'
+  description: 'Change attached data settings.'

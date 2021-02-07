@@ -50,4 +50,4 @@ omnipedia_attached_data.configuration:
     _form: '\Drupal\omnipedia_attached_data\Form\OmnipediaAttachedDataConfigurationForm'
     _title: 'Attached data configuration'
   requirements:
-    _permission: 'administer omnipedia_attached_data entity'
+    _permission: 'configure omnipedia_attached_data entity'
