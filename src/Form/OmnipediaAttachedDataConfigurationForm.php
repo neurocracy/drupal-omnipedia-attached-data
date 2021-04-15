@@ -6,7 +6,6 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_attached_data\Plugin\OmnipediaAttachedDataPluginCollection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
