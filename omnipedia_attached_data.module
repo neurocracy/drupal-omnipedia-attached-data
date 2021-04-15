@@ -28,15 +28,6 @@ function omnipedia_attached_data_help(
         ) . '</p>';
       }
 
-      return '<p>' . \t(
-        'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data. <a href=":collectionUrl">View attached data</a>.',
-        [
-          ':collectionUrl' =>
-            Url::fromRoute('entity.omnipedia_attached_data.collection')
-            ->toString(),
-        ]
-      ) . '</p>';
-
     case 'entity.omnipedia_attached_data.collection':
       /** @var \Drupal\Core\Url */
       $configurationUrl = Url::fromRoute(
