@@ -2,7 +2,7 @@
 
 namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataBase;
+use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 
 /**
  * Abbreviation attached data plug-in.

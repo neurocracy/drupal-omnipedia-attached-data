@@ -11,7 +11,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -253,7 +253,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
   /**
    * Gets the OmnipediaAttachedData plug-in manager service.
    *
-   * @return \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   * @return \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    *   The OmnipediaAttachedData plug-in manager service.
    */
   protected static function attachedDataManager(): OmnipediaAttachedDataManagerInterface {

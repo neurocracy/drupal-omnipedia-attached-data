@@ -3,7 +3,7 @@
 namespace Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia;
 
 use Drupal\Component\Utility\Html;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\WikimediaLink;
 use Drupal\omnipedia_content\Event\Omnipedia\WikimediaLinkBuildEvent;
 use Drupal\omnipedia_content\OmnipediaContentEventInterface;
@@ -17,14 +17,14 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
   /**
    * The OmnipediaAttachedData plug-in manager.
    *
-   * @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
   protected $attachedDataManager;
 
   /**
    * Event subscriber constructor; saves dependencies.
    *
-   * @param \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface $attachedDataManager
+   * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(

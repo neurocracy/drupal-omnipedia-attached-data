@@ -4,7 +4,7 @@ namespace Drupal\omnipedia_attached_data\Plugin\Filter;
 
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\WikimediaLink;
 use Symfony\Component\DomCrawler\Crawler;
 

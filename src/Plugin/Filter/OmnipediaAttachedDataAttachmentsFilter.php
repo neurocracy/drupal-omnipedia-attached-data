@@ -5,7 +5,7 @@ namespace Drupal\omnipedia_attached_data\Plugin\Filter;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @todo Can we instead access the Markdown FilterProcessResult so that
  *   attachments can be added there without the need for this additional filter?
  *
- * @see \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface::getAttachments()
+ * @see \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface::getAttachments()
  *   Called to retrieve any attachments from available plug-ins.
  */
 class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements ContainerFactoryPluginInterface {
@@ -29,7 +29,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
   /**
    * The OmnipediaAttachedData plug-in manager.
    *
-   * @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
   protected $attachedDataManager;
 
@@ -46,7 +46,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
    *   The plug-in implementation definition. PluginBase defines this as mixed,
    *   but we should always have an array so the type is set.
    *
-   * @param \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface $attachedDataManager
+   * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(
@@ -75,7 +75,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
   /**
    * {@inheritdoc}
    *
-   * @see \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface::getAttachments()
+   * @see \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface::getAttachments()
    *   Retrieves any attachements defined by plug-ins.
    */
   public function process($text, $langCode) {

@@ -7,7 +7,7 @@ use Drupal\Component\Annotation\Plugin;
 /**
  * Defines an OmnipediaAttachedData annotation object.
  *
- * @see \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+ * @see \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
  *
  * @see plugin_api
  *

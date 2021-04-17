@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\omnipedia_attached_data;
+namespace Drupal\omnipedia_attached_data\PluginManager;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 

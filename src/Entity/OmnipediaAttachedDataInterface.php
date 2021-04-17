@@ -30,7 +30,7 @@ interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityO
    *
    * @see \callback_allowed_values_function()
    *
-   * @see \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface::getAttachedDataTypeOptionValues()
+   * @see \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface::getAttachedDataTypeOptionValues()
    */
   public static function attachedDataTypeAllowedValuesCallback(
     FieldStorageDefinitionInterface $definition,
@@ -53,7 +53,7 @@ interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityO
    *
    * @see \Drupal\Core\Field\FieldConfigBase::getDefaultValue()
    *
-   * @see \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface::getAttachedDataTypeDefaultValue()
+   * @see \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface::getAttachedDataTypeDefaultValue()
    */
   public static function attachedDataTypeDefaultValueCallback(
     OmnipediaAttachedDataInterface $entity,

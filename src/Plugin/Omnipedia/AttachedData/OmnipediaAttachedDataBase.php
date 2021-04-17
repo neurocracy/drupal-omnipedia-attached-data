@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\omnipedia_attached_data;
+namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
 use Drupal\Component\Plugin\PluginBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -9,7 +9,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface;
+use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
 use Drupal\omnipedia_core\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

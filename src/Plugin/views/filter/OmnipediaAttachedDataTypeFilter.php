@@ -2,7 +2,7 @@
 
 namespace Drupal\omnipedia_attached_data\Plugin\views\filter;
 
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\filter\InOperator;
 use Drupal\views\ViewExecutable;
@@ -20,7 +20,7 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
   /**
    * The OmnipediaAttachedData plug-in manager.
    *
-   * @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
   protected $attachedDataManager;
 
@@ -36,7 +36,7 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
    * @param mixed $pluginDefinition
    *   The plug-in implementation definition.
    *
-   * @param \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface $attachedDataManager
+   * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(

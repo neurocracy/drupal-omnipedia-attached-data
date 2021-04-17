@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\omnipedia_attached_data;
+namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
 use Drupal\Core\Form\FormStateInterface;
 

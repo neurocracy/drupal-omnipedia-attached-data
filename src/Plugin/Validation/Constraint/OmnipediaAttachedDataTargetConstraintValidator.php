@@ -3,7 +3,7 @@
 namespace Drupal\omnipedia_attached_data\Plugin\Validation\Constraint;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -16,14 +16,14 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
   /**
    * The OmnipediaAttachedData plug-in manager.
    *
-   * @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface
+   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
   protected $attachedDataManager;
 
   /**
    * Constructs an OmnipediaAttachedDataTargetConstraintValidator object.
    *
-   * @param \Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface $attachedDataManager
+   * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(

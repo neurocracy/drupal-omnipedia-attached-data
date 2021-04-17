@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\omnipedia_attached_data;
+namespace Drupal\omnipedia_attached_data\PluginManager;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\CacheBackendInterface;
@@ -8,8 +8,8 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\omnipedia_attached_data\Annotation\OmnipediaAttachedData as OmnipediaAttachedDataAnnotation;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
 
 /**
  * The OmnipediaAttachedData plug-in manager.
@@ -248,7 +248,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    * {@inheritdoc}
    */
   public function validateTarget(string $pluginId, string $target): array {
-    /** @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface */
+    /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
     $instance = $this->createInstance($pluginId, []);
 
     return $instance->validateTarget($target);
@@ -260,7 +260,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   public function getContent(
     string $pluginId, string $target, $date = null
   ): ?string {
-    /** @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface */
+    /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
     $instance = $this->createInstance($pluginId, []);
 
     return $instance->getContent($target, $date);
@@ -297,7 +297,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     $definitions = $this->getDefinitions();
 
     foreach ($definitions as $pluginId => $definition) {
-      /** @var \Drupal\omnipedia_attached_data\OmnipediaAttachedDataInterface */
+      /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
       $instance = $this->createInstance($pluginId, []);
 
       /** @var array */

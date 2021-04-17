@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
-use Drupal\omnipedia_attached_data\OmnipediaAttachedDataBase;
+use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 use Drupal\omnipedia_content\Service\WikimediaLinkInterface;
 use Drupal\omnipedia_core\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
