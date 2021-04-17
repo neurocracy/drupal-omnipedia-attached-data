@@ -5,8 +5,8 @@ namespace Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia;
 use Drupal\Component\Utility\Html;
 use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\WikimediaLink;
+use Drupal\omnipedia_content\Event\Omnipedia\OmnipediaContentEventInterface;
 use Drupal\omnipedia_content\Event\Omnipedia\WikimediaLinkBuildEvent;
-use Drupal\omnipedia_content\OmnipediaContentEventInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
