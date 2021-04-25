@@ -19,6 +19,15 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
+  # Event subscriber to register attached data abbrevations.
+  omnipedia_attached_data.abbreviations_build_event_subscriber:
+    class: Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia\AbbreviationsBuildEventSubscriber
+    arguments:
+      - '@plugin.manager.omnipedia_attached_data'
+      - '@omnipedia.timeline'
+    tags:
+      - { name: 'event_subscriber' }
+
   # Event subscriber to attach data to matching Wikimedia links.
   omnipedia_attached_data.wikimedia_link_build_event_subscriber:
     class: Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia\WikimediaLinkBuildEventSubscriber
