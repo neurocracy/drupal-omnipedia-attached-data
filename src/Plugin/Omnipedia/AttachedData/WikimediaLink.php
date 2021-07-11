@@ -94,8 +94,10 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
   protected function alterTarget(string $target, $date): string {
     // CommonMark requires link URLs to not contain spaces, so content is
     // authored with underscores, but attached data is authored with spaces, so
-    // we replace underscores with spaces here.
-    return \str_replace('_', ' ', $target);
+    // we replace underscores with spaces here. We also have to decode any URL-
+    // encoded characters into their literal characters so that attached data
+    // with accents will correctly match.
+    return \str_replace('_', ' ', $this->wikimediaLink->urlDecode($target));
   }
 
   /**
