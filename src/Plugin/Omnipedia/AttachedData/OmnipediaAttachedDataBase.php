@@ -169,9 +169,11 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     // matches our criteria.
     foreach ($entities as $id => $entity) {
       // Ignore this attached data entity if its date range does not fall within
-      // the provided date.
+      // the provided date. Note that we include unpublished dates so that this
+      // can apply to unpublished content that has no published content for that
+      // date.
       if (!$this->timeline->isDateBetween(
-        $date, $entity->getStartDate(), $entity->getEndDate()
+        $date, $entity->getStartDate(), $entity->getEndDate(), true
       )) {
         continue;
       }
