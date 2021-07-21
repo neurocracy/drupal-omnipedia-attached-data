@@ -26,7 +26,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   /**
    * The Drupal configuration object factory service.
    *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
