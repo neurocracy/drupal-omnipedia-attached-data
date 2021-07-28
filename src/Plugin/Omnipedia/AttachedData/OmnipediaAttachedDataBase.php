@@ -189,6 +189,16 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
       break;
     }
 
+    if (\is_string($markup)) {
+      // Replace any newlines that weren't handled by CommonMark with <br>
+      // elements - note that two or more newlines are converted by CommonMark
+      // into <p> elements, so we don't need to do any fancy checking here. This
+      // is necessary to avoid certain edge cases, e.g. the changes diffing
+      // breaking the link HTML if the data attribute contains a newline.
+      $markup = \str_replace("\n", '<br>', $markup);
+
+    }
+
     return $markup;
   }
 
