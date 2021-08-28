@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,7 +28,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataForm extends ContentEntityForm {
 
   /**
-   * Constructs a OmnipediaAttachedDataForm object.
+   * Our logger channel.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $loggerChannel;
+
+  /**
+   * Form constructor; saves dependencies.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
    *   The Drupal entity repository service.
@@ -38,6 +46,9 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The Drupal time service.
    *
+   * @param \Psr\Log\LoggerInterface $loggerChannel
+   *   Our logger channel.
+   *
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The Drupal messenger service.
    */
@@ -45,12 +56,15 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
     EntityRepositoryInterface     $entityRepository,
     EntityTypeBundleInfoInterface $entityTypeBundleNnfo = null,
     TimeInterface                 $time = null,
+    LoggerInterface               $loggerChannel,
     MessengerInterface            $messenger
   ) {
+
     parent::__construct($entityRepository, $entityTypeBundleNnfo, $time);
 
-    // Save dependencies.
-    $this->messenger = $messenger;
+    $this->loggerChannel  = $loggerChannel;
+    $this->messenger      = $messenger;
+
   }
 
   /**
@@ -61,6 +75,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
       $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
+      $container->get('logger.channel.omnipedia_attached_data'),
       $container->get('messenger')
     );
   }
@@ -72,6 +87,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
    * like the node edit form.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+
     $form = parent::buildForm($form, $form_state);
 
     /* @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
@@ -111,12 +127,14 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
     unset($form['uid'], $form['type'], $form['date_range']);
 
     return $form;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
+
     $form_state->setRedirect('entity.omnipedia_attached_data.collection');
 
     /* @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
@@ -157,7 +175,8 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
 
     $this->messenger()->addStatus($message);
 
-    $this->logger('omnipedia_attached_data')->notice($message);
+    $this->loggerChannel->notice($message);
+
   }
 
 }

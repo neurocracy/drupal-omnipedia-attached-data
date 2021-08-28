@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,7 +28,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
 
   /**
-   * Constructs a OmnipediaAttachedDataDeleteForm object.
+   * Our logger channel.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $loggerChannel;
+
+  /**
+   * Form constructor; saves dependencies.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
    *   The Drupal entity repository service.
@@ -38,6 +46,9 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The Drupal time service.
    *
+   * @param \Psr\Log\LoggerInterface $loggerChannel
+   *   Our logger channel.
+   *
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The Drupal messenger service.
    */
@@ -45,12 +56,15 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
     EntityRepositoryInterface     $entityRepository,
     EntityTypeBundleInfoInterface $entityTypeBundleNnfo = null,
     TimeInterface                 $time = null,
+    LoggerInterface               $loggerChannel,
     MessengerInterface            $messenger
   ) {
+
     parent::__construct($entityRepository, $entityTypeBundleNnfo, $time);
 
-    // Save dependencies.
-    $this->messenger = $messenger;
+    $this->loggerChannel  = $loggerChannel;
+    $this->messenger      = $messenger;
+
   }
 
   /**
@@ -61,6 +75,7 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
       $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
+      $container->get('logger.channel.omnipedia_attached_data'),
       $container->get('messenger')
     );
   }
@@ -93,6 +108,7 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
     /* @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $this->getEntity();
 
@@ -108,9 +124,10 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
 
     $this->messenger()->addStatus($message);
 
-    $this->logger('omnipedia_attached_data')->notice($message);
+    $this->loggerChannel->notice($message);
 
     $form_state->setRedirect('entity.omnipedia_attached_data.collection');
+
   }
 
 }

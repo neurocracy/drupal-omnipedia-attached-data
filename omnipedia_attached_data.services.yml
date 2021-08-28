@@ -1,5 +1,11 @@
 services:
 
+  # Our logger channel.
+  logger.channel.omnipedia_attached_data:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['omnipedia_attached_data']
+
   # The OmnipediaAttachedData plug-in manager.
   plugin.manager.omnipedia_attached_data:
     class: Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManager
