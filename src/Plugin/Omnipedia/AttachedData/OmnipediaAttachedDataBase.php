@@ -181,6 +181,17 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
       /** @var array */
       $renderArray = $entity->content->view();
 
+      // Provide context information to filter plug-ins and CommonMark events.
+      //
+      // @see \Drupal\omnipedia_content\EventSubscriber\Markdown\CommonMark\OmnipediaContextEventSubscriber
+      //   Translates this context to CommonMark document data and removes any
+      //   context elements that are found.
+      foreach ($renderArray['#items'] as $key => $item) {
+        $renderArray[$key]['#text'] =
+          '<omnipedia-context context="attachedData"/>' .
+          $renderArray[$key]['#text'];
+      }
+
       /** @var string */
       $markup = (string) $this->renderer->render($renderArray[0]);
 
