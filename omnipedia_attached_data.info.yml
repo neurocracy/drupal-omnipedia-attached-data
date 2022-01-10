@@ -2,7 +2,7 @@ name: Omnipedia - Attached data
 type: module
 description: Provides an attached data entity, an administrative interface for managing those entities, and attaches the entity data to content.
 package: Omnipedia
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9
 
 configure: omnipedia_attached_data.configuration
 
