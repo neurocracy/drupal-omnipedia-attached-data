@@ -16,6 +16,12 @@ services:
         -
           - '@config.factory'
 
+  # The Omnipedia attached data help service.
+  omnipedia_attached_data.help:
+    class: Drupal\omnipedia_attached_data\Service\Help
+    arguments:
+      - '@string_translation'
+
   # Event subscriber to add attached data cache tags to appropriate fields.
   omnipedia_attached_data.attached_data_cache_tags_preprocess_field_event_subscriber:
     class: Drupal\omnipedia_attached_data\EventSubscriber\Preprocess\AttachedDataCacheTagsPreprocessFieldEventSubscriber

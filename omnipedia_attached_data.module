@@ -1,50 +1,14 @@
 <?php
 
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Url;
 
 /**
- * Implements hook_help().
+ * Implements \hook_help().
  */
 function omnipedia_attached_data_help(
   $routeName, RouteMatchInterface $routeMatch
 ) {
-  switch ($routeName) {
-    case 'omnipedia_attached_data.configuration':
-      /** @var \Drupal\Core\Url */
-      $collectionUrl = Url::fromRoute(
-        'entity.omnipedia_attached_data.collection'
-      );
-
-      if ($collectionUrl->access() === true) {
-        return '<p>' . \t(
-          'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data. <a href=":collectionUrl">View attached data</a>.',
-          [':collectionUrl' => $collectionUrl->toString()]
-        ) . '</p>';
-
-      } else {
-        return '<p>' . \t(
-          'This lists all attached data types. Changing the order here will be reflected when adding or editing attached data. The type at the top of the list is the default type when creating new attached data.'
-        ) . '</p>';
-      }
-
-    case 'entity.omnipedia_attached_data.collection':
-      /** @var \Drupal\Core\Url */
-      $configurationUrl = Url::fromRoute(
-        'omnipedia_attached_data.configuration'
-      );
-
-      if ($configurationUrl->access() === true) {
-        return '<p>' . \t(
-          'This lists all attached data that has been authored. See also the <a href=":configurationUrl">attached data configuration</a>.',
-          [':configurationUrl' => $configurationUrl->toString()]
-        ) . '</p>';
-
-      } else {
-        return '<p>' . \t(
-          'This lists all attached data that has been authored.'
-        ) . '</p>';
-      }
-  }
-
+  return \Drupal::service('omnipedia_attached_data.help')->help(
+    $routeName, $routeMatch
+  );
 }
