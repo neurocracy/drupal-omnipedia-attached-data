@@ -12,7 +12,5 @@
   ],
   "require": {
     "drupal/migrate_plus": "^5.1"
-  },
-  "require-dev": {
   }
 }
