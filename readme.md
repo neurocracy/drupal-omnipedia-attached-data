@@ -1,5 +1,6 @@
-This contains the source files for the "[Omnipedia](https://omnipedia.app/) -
-Attached data" Drupal module.
+This contains the source files for the "*Omnipedia - Attached data*" Drupal
+module, which provides the attached data framework for
+[Omnipedia](https://omnipedia.app/).
 
 ⚠️⚠️⚠️ ***Here be potential spoilers. Proceed at your own risk.*** ⚠️⚠️⚠️
 
