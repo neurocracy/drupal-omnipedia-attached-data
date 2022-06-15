@@ -23,3 +23,9 @@ part of this codebase is useful or will inspire someone out there.
 * PHP 8
 
 * [Composer](https://getcomposer.org/)
+
+----
+
+# Planned improvements
+
+* [Port date-related attached data functionality to the omnipedia_date module](https://github.com/neurocracy/drupal-omnipedia-attached-data/issues/1)
