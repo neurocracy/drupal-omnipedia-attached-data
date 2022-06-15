@@ -10,7 +10,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
-use Drupal\omnipedia_core\Service\TimelineInterface;
+use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -37,7 +37,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
   /**
    * The Omnipedia timeline service.
    *
-   * @var \Drupal\omnipedia_core\Service\TimelineInterface
+   * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
   protected $timeline;
 
@@ -63,7 +63,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   The Drupal string translation service.
    *
-   * @param \Drupal\omnipedia_core\Service\TimelineInterface $timeline
+   * @param \Drupal\omnipedia_date\Service\TimelineInterface $timeline
    *   The Omnipedia timeline service.
    */
   public function __construct(

@@ -9,7 +9,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 use Drupal\omnipedia_content\Service\WikimediaLinkInterface;
-use Drupal\omnipedia_core\Service\TimelineInterface;
+use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

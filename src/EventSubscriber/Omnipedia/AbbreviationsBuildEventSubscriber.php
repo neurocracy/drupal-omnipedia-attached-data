@@ -5,7 +5,7 @@ namespace Drupal\omnipedia_attached_data\EventSubscriber\Omnipedia;
 use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_content\Event\Omnipedia\AbbreviationsBuildEvent;
 use Drupal\omnipedia_content\Event\Omnipedia\OmnipediaContentEventInterface;
-use Drupal\omnipedia_core\Service\TimelineInterface;
+use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -23,7 +23,7 @@ class AbbreviationsBuildEventSubscriber implements EventSubscriberInterface{
   /**
    * The Omnipedia timeline service.
    *
-   * @var \Drupal\omnipedia_core\Service\TimelineInterface
+   * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
   protected $timeline;
 
@@ -33,7 +33,7 @@ class AbbreviationsBuildEventSubscriber implements EventSubscriberInterface{
    * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    *
-   * @param \Drupal\omnipedia_core\Service\TimelineInterface $timeline
+   * @param \Drupal\omnipedia_date\Service\TimelineInterface $timeline
    *   The Omnipedia timeline service.
    */
   public function __construct(

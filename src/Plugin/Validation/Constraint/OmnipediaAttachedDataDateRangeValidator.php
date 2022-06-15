@@ -4,7 +4,7 @@ namespace Drupal\omnipedia_attached_data\Plugin\Validation\Constraint;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\omnipedia_core\Service\TimelineInterface;
+use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -24,7 +24,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
   /**
    * The Omnipedia timeline service.
    *
-   * @var \Drupal\omnipedia_core\Service\TimelineInterface
+   * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
   protected $timeline;
 
@@ -34,7 +34,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
    * @param \Drupal\Core\Entity\EntityStorageInterface $entityStorage
    *   The Omnipedia attached data entity storage.
    *
-   * @param \Drupal\omnipedia_core\Service\TimelineInterface $timeline
+   * @param \Drupal\omnipedia_date\Service\TimelineInterface $timeline
    *   The Omnipedia timeline service.
    */
   public function __construct(
