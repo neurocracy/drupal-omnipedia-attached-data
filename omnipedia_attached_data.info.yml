@@ -7,6 +7,7 @@ core_version_requirement: ^9
 configure: omnipedia_attached_data.configuration
 
 dependencies:
+  - ambientimpact_core:ambientimpact_core
   - ambientimpact_ux:ambientimpact_ux
   - drupal:datetime
   - drupal:datetime_range
