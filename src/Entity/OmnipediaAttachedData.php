@@ -286,7 +286,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
   /**
    * {@inheritdoc}
    */
-  public function getTypeLabel(): string {
+  public function getTypeLabel(): TranslatableMarkup|string {
     return self::attachedDataManager()->getAttachedDataTypeLabel(
       $this->type->value
     );

@@ -3,6 +3,7 @@
 namespace Drupal\omnipedia_attached_data\PluginManager;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines an interface for OmnipediaAttachedData plug-in managers.
@@ -75,11 +76,13 @@ interface OmnipediaAttachedDataManagerInterface {
    * @param string $machineName
    *   The machine name of the plug-in to return the label of.
    *
-   * @return string
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
    *   The label for the requested plug-in machine name, or an empty string if
    *   the plug-in doesn't exist.
    */
-  public function getAttachedDataTypeLabel(string $machineName): string;
+  public function getAttachedDataTypeLabel(
+    string $machineName
+  ): TranslatableMarkup|string;
 
   /**
    * Validate a given target string and return any error messages.

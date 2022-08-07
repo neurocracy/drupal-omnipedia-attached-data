@@ -6,6 +6,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\user\EntityOwnerInterface;
 
 /**
@@ -63,10 +64,10 @@ interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityO
   /**
    * Get this OmnipediaAttachedData entity's user-presentable type label.
    *
-   * @return string
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
    *   The type label.
    */
-  public function getTypeLabel(): string;
+  public function getTypeLabel(): TranslatableMarkup|string;
 
   /**
    * Get this OmnipediaAttachedData entity's user-presentable title.

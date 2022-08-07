@@ -7,6 +7,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\omnipedia_attached_data\Annotation\OmnipediaAttachedData as OmnipediaAttachedDataAnnotation;
 use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
@@ -233,7 +234,9 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   /**
    * {@inheritdoc}
    */
-  public function getAttachedDataTypeLabel(string $machineName): string {
+  public function getAttachedDataTypeLabel(
+    string $machineName
+  ): TranslatableMarkup|string {
     /** @var array */
     $definitions = $this->getDefinitions();
 
