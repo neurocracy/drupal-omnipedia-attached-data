@@ -26,14 +26,14 @@ class Abbreviation extends OmnipediaAttachedDataBase {
    *
    * @var \Drupal\omnipedia_content\Service\AbbreviationInterface
    */
-  protected $abbreviation;
+  protected AbbreviationInterface $abbreviation;
 
   /**
    * The Omnipedia attached data entity storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $attachedDataStorage;
+  protected EntityStorageInterface $attachedDataStorage;
 
   /**
    * {@inheritdoc}

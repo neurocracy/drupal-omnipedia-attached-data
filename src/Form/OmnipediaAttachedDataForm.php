@@ -34,7 +34,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
    *
    * @var \Psr\Log\LoggerInterface
    */
-  protected $loggerChannel;
+  protected LoggerInterface $loggerChannel;
 
   /**
    * Form constructor; saves dependencies.

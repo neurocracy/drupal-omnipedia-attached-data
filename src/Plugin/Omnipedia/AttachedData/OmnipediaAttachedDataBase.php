@@ -27,21 +27,21 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The Drupal renderer service.
    *
    * @var \Drupal\Core\Render\RendererInterface
    */
-  protected $renderer;
+  protected RendererInterface $renderer;
 
   /**
    * The Omnipedia timeline service.
    *
    * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
-  protected $timeline;
+  protected TimelineInterface $timeline;
 
   /**
    * Constructs an OmnipediaAttachedDataBase object.

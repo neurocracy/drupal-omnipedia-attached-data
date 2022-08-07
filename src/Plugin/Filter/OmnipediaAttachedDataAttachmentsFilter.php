@@ -33,7 +33,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * Constructs this filter object.

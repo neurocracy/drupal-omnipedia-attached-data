@@ -30,7 +30,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
    *
    * @var \Drupal\omnipedia_content\Service\WikimediaLinkInterface
    */
-  protected $wikimediaLink;
+  protected WikimediaLinkInterface $wikimediaLink;
 
   /**
    * {@inheritdoc}

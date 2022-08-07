@@ -20,7 +20,7 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * Constructs an OmnipediaAttachedDataTargetConstraintValidator object.

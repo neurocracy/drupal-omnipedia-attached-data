@@ -24,7 +24,7 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * Constructs an OmnipediaAttachedDataTypeFilter object.

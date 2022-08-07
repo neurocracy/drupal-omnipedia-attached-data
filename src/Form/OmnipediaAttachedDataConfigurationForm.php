@@ -22,7 +22,7 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * Constructs an OmnipediaAttachedDataConfigurationForm object.

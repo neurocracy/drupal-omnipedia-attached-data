@@ -31,7 +31,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  protected $configFactory;
+  protected ConfigFactoryInterface $configFactory;
 
   /**
    * Creates the discovery object.

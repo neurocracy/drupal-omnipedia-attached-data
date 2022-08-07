@@ -21,7 +21,7 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * Event subscriber constructor; saves dependencies.

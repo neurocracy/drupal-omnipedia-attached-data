@@ -20,14 +20,14 @@ class AbbreviationsBuildEventSubscriber implements EventSubscriberInterface{
    *
    * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
    */
-  protected $attachedDataManager;
+  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
    * The Omnipedia timeline service.
    *
    * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
-  protected $timeline;
+  protected TimelineInterface $timeline;
 
   /**
    * Event subscriber constructor; saves dependencies.

@@ -21,14 +21,14 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $entityStorage;
+  protected EntityStorageInterface $entityStorage;
 
   /**
    * The Omnipedia timeline service.
    *
    * @var \Drupal\omnipedia_date\Service\TimelineInterface
    */
-  protected $timeline;
+  protected TimelineInterface $timeline;
 
   /**
    * Constructs an OmnipediaAttachedDataDateRangeValidator object.
