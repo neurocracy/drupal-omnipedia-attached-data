@@ -24,7 +24,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
    *
    * @type {String}
    */
-  var linkSelector = 'a[' +
+  let linkSelector = 'a[' +
     drupalSettings.omnipedia.attachedData.isWikimediaLinkAttributeName +
   '][' +
     drupalSettings.omnipedia.attachedData.titleAttributeName +
@@ -39,7 +39,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
    *
    * @see decodeEntities()
    */
-  var decodeTextArea = document.createElement('textarea');
+  let decodeTextArea = document.createElement('textarea');
 
   /**
    * Decode HTML entities in a safe and secure manner.
@@ -74,7 +74,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
        *
        * @type {jQuery}
        */
-      var $links = $(this).find(linkSelector);
+      let $links = $(this).find(linkSelector);
 
       // Don't do anything if we can't find any links.
       if ($links.length === 0) {
@@ -95,14 +95,14 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
          *
          * @type {jQuery}
          */
-        var $this = $(this);
+        let $this = $(this);
 
         /**
          * The HTML string content of this Wikimedia link's attached data.
          *
          * @type {String}
          */
-        var content = '';
+        let content = '';
 
         $title.append($this.attr(
           drupalSettings.omnipedia.attachedData.titleAttributeName
@@ -124,7 +124,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
            *
            * @type {Document}
            */
-          var parsedDocument = new DOMParser().parseFromString(
+          let parsedDocument = new DOMParser().parseFromString(
             decodeEntities(
               $this.attr(
                 drupalSettings.omnipedia.attachedData.contentAttributeName
@@ -138,7 +138,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
            *
            * @type {String}
            */
-          var parsedContent = $(parsedDocument.body).html();
+          let parsedContent = $(parsedDocument.body).html();
 
           // If we got a string that's not empty, use it as the content.
           if (typeof parsedContent === 'string' && parsedContent.length > 0) {
@@ -170,7 +170,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
        *
        * @type {jQuery}
        */
-      var $links = $(this).find(linkSelector);
+      let $links = $(this).find(linkSelector);
 
       // Don't do anything if we can't find any links.
       if ($links.length === 0) {
