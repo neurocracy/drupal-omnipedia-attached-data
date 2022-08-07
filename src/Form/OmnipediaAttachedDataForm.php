@@ -158,6 +158,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
     //   $entity->toLink() ourselves, to ensure the link can be altered by hooks
     //   rather than embedding it directly in the untranslated string.
     if ($isNew) {
+
       /** @var \Drupal\Core\StringTranslation\TranslatableMarkup */
       $message = $this->t(
         'Added attached data "%title".',
@@ -165,7 +166,9 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
           '%title' => $entity->getTitle(),
         ]
       );
+
     } else {
+
       /** @var \Drupal\Core\StringTranslation\TranslatableMarkup */
       $message = $this->t(
         'Updated attached data "%title".',
@@ -173,6 +176,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
           '%title' => $entity->getTitle(),
         ]
       );
+
     }
 
     $this->messenger()->addStatus($message);

@@ -62,6 +62,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
    * {@inheritdoc}
    */
   public function validate($value, Constraint $constraint) {
+
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $value->getEntity();
 
@@ -81,6 +82,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
     }
 
     foreach ($value as $delta => $item) {
+
       /** @var string  */
       $startDate = $entity->getStartDate();
 
@@ -88,6 +90,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
       $endDate = $entity->getEndDate();
 
       foreach ($otherEntities as $otherEntityId => $otherEntity) {
+
         /** @var string  */
         $otherStartDate = $otherEntity->getStartDate();
 
@@ -112,8 +115,11 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
             ),
           ]
         );
+
       }
+
     }
+
   }
 
 }

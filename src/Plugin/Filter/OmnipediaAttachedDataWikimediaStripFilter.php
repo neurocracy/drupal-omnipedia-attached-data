@@ -26,6 +26,7 @@ class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase {
    * {@inheritdoc}
    */
   public function process($text, $langCode) {
+
     /** @var \Symfony\Component\DomCrawler\Crawler */
     $rootCrawler = new Crawler(
       // The <div> is to prevent the PHP DOM automatically wrapping any
@@ -49,6 +50,7 @@ class OmnipediaAttachedDataWikimediaStripFilter extends FilterBase {
         '#omnipedia-attached-data-wikimedia-strip-filter-root'
       )->html()
     );
+
   }
 
 }

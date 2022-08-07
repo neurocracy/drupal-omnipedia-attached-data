@@ -75,6 +75,7 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
    *   filter? Would that be overkill?
    */
   public function onPreprocessField(FieldPreprocessEvent $event): void {
+
     /** @var \Drupal\preprocess_event_dispatcher\Variables\FieldEventVariables */
     $variables = $event->getVariables();
 
@@ -111,6 +112,7 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
 
     // Merge tags if some already exist.
     if (isset($cache['tags'])) {
+
       $cache['tags'] = Cache::mergeTags(
         $cache['tags'],
         $entityType->getListCacheTags()
@@ -121,6 +123,7 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
     }
 
     $variables->set('#cache', $cache);
+
   }
 
 }

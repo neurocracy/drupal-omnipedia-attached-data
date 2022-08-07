@@ -27,10 +27,12 @@ class OmnipediaAttachedDataController extends ControllerBase {
   public function getAttachedDataTitle(
     OmnipediaAttachedDataInterface $omnipedia_attached_data
   ): array {
+
     return [
       '#markup'       => $omnipedia_attached_data->getTitle(),
       '#allowed_tags' => Xss::getHtmlTagList(),
     ];
+
   }
 
 }

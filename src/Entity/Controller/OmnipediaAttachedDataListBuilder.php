@@ -34,9 +34,11 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
     EntityStorageInterface  $storage,
     TimelineInterface       $timeline
   ) {
+
     parent::__construct($entityType, $storage);
 
     $this->timeline = $timeline;
+
   }
 
   /**
@@ -56,6 +58,7 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
+
     $header['target'] = $this->t('Target');
     $header['type']   = $this->t('Type');
 
@@ -63,12 +66,14 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
     $header['date_end']   = $this->t('End date');
 
     return $header + parent::buildHeader();
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
+
     /** @var string */
     $row['target']  = $entity->toLink($entity->getTitle())->toString();
 
@@ -86,6 +91,7 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
     );
 
     return $row + parent::buildRow($entity);
+
   }
 
 }

@@ -76,6 +76,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
    * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entityType) {
+
     return [
       'id'  => BaseFieldDefinition::create('integer')
         ->setLabel(new TranslatableMarkup('ID'))
@@ -202,6 +203,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'The time that the attached data was last edited.'
         )),
     ];
+
   }
 
   /**
@@ -231,9 +233,11 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
    * {@inheritdoc}
    */
   public function setOwner(UserInterface $account) {
+
     $this->set('uid', $account->id());
 
     return $this;
+
   }
 
   /**
@@ -245,11 +249,13 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
   public static function preCreate(
     EntityStorageInterface $storage, array &$values
   ) {
+
     parent::preCreate($storage, $values);
 
     $values += [
       'uid' => \Drupal::currentUser()->id(),
     ];
+
   }
 
   /**
@@ -280,18 +286,22 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
     OmnipediaAttachedDataInterface $entity,
     FieldDefinitionInterface $definition
   ): array {
+
     return [
       'value' => self::attachedDataManager()->getAttachedDataTypeDefaultValue(),
     ];
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function getTypeLabel(): TranslatableMarkup|string {
+
     return self::attachedDataManager()->getAttachedDataTypeLabel(
       $this->type->value
     );
+
   }
 
   /**
@@ -313,20 +323,24 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
    * {@inheritdoc}
    */
   public function getStartDate(): string {
+
     /** @var string|null */
     $value = $this->date_range->value;
 
     return $value === null ? 'first' : $value;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function getEndDate(): string {
+
     /** @var string|null */
     $value = $this->date_range->end_value;
 
     return $value === null ? 'last' : $value;
+
   }
 
 }

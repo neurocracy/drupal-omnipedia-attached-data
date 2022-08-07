@@ -55,9 +55,11 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
     array $configuration, string $pluginID, array $pluginDefinition,
     OmnipediaAttachedDataManagerInterface $attachedDataManager
   ) {
+
     parent::__construct($configuration, $pluginID, $pluginDefinition);
 
     $this->attachedDataManager = $attachedDataManager;
+
   }
 
   /**
@@ -80,12 +82,14 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
    *   Retrieves any attachements defined by plug-ins.
    */
   public function process($text, $langCode) {
+
     /** @var \Drupal\filter\FilterProcessResult */
     $result = new FilterProcessResult($text);
 
     $result->addAttachments($this->attachedDataManager->getAttachments());
 
     return $result;
+
   }
 
 }

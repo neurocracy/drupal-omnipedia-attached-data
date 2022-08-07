@@ -18,6 +18,7 @@ class OmnipediaAttachedDataViewsData extends EntityViewsData {
    *   Documents the data structure returned by this method.
    */
   public function getViewsData() {
+
     /** @var array */
     $data = parent::getViewsData();
 
@@ -88,6 +89,7 @@ class OmnipediaAttachedDataViewsData extends EntityViewsData {
     ];
 
     return $data;
+
   }
 
 }

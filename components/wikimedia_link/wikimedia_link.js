@@ -13,6 +13,7 @@ AmbientImpact.on(['contentPopUp', 'OmnipediaTooltip'], function(
 AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
   OmnipediaWikimediaLink, $
 ) {
+
   'use strict';
 
   /**
@@ -55,9 +56,11 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
    * @see decodeTextArea
    */
   function decodeEntities(encodedString) {
+
     decodeTextArea.innerHTML = encodedString;
 
     return decodeTextArea.value;
+
   }
 
   this.addBehaviour(
@@ -65,6 +68,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
     'omnipedia-wikimedia-link',
     '.layout-container',
     function(context, settings) {
+
       /**
        * All Wikimedia links in context that have attached data attributes.
        *
@@ -85,6 +89,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
       $links.one('contentPopUpContent.OmnipediaWikimediaLink', function(
         event, $title, $content
       ) {
+
         /**
          * The current Wikimedia link to build attached data content for.
          *
@@ -113,6 +118,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
         //
         // @see https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#Security_considerations
         try {
+
           /**
            * A document parsed from the attached data content attribute.
            *
@@ -135,10 +141,7 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
           var parsedContent = $(parsedDocument.body).html();
 
           // If we got a string that's not empty, use it as the content.
-          if (
-            typeof parsedContent === 'string' &&
-            parsedContent.length > 0
-          ) {
+          if (typeof parsedContent === 'string' && parsedContent.length > 0) {
             content = parsedContent;
           }
 
@@ -154,12 +157,14 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
         }
 
         $content.append(content);
+
       });
 
       aiContentPopUp.addItems($links);
 
     },
     function(context, settings, trigger) {
+
       /**
        * All Wikimedia links in context that have attached data attributes.
        *
@@ -177,7 +182,10 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
       // Remove the handler in case it's still attached, e.g. there was an error
       // somewhere and it didn't get triggered at all.
       $links.off('contentPopUpContent.OmnipediaWikimediaLink');
+
     }
+
   );
+
 });
 });

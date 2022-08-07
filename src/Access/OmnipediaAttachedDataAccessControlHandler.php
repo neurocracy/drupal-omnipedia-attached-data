@@ -20,6 +20,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
   protected function checkAccess(
     EntityInterface $entity, $operation, AccountInterface $account
   ) {
+
     $adminPermission = $this->entityType->getAdminPermission();
 
     if ($account->hasPermission($adminPermission)) {
@@ -27,6 +28,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
     }
 
     switch ($operation) {
+
       case 'view':
         return AccessResult::allowedIfHasPermission(
           $account, 'view omnipedia_attached_data entity'
@@ -41,9 +43,11 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
         return AccessResult::allowedIfHasPermission(
           $account, 'delete omnipedia_attached_data entity'
         );
+
     }
 
     return AccessResult::neutral();
+
   }
 
   /**
@@ -55,6 +59,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
   protected function checkCreateAccess(
     AccountInterface $account, array $context, $entityBundle = null
   ) {
+
     $adminPermission = $this->entityType->getAdminPermission();
 
     // Admin permission overrides all others.
@@ -65,6 +70,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
     return AccessResult::allowedIfHasPermission(
       $account, 'add omnipedia_attached_data entity'
     );
+
   }
 
 }

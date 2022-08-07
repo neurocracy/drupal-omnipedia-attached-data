@@ -46,12 +46,14 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
     EntityTypeManagerInterface  $entityTypeManager,
     WikimediaLinkInterface      $wikimediaLink
   ) {
+
     parent::__construct(
       $configuration, $pluginId, $pluginDefinition,
       $entityTypeManager, $renderer, $stringTranslation, $timeline
     );
 
     $this->wikimediaLink = $wikimediaLink;
+
   }
 
   /**
@@ -77,6 +79,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
    * @todo List valid prefixes?
    */
   public function validateTarget(string $target): array {
+
     $errors = [];
 
     if (!$this->wikimediaLink->isPrefixUrl($target)) {
@@ -87,6 +90,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
     }
 
     return $errors;
+
   }
 
   /**
@@ -115,6 +119,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
    * {@inheritdoc}
    */
   public function getAttachements(): array {
+
     return [
       'library' => [
         'omnipedia_attached_data/component.wikimedia_link',
@@ -124,6 +129,7 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
           self::getIsWikimediaLinkAttributeName(),
       ]]],
     ];
+
   }
 
 }

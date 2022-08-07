@@ -45,9 +45,11 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
     array $configuration, $pluginId, $pluginDefinition,
     OmnipediaAttachedDataManagerInterface $attachedDataManager
   ) {
+
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
     $this->attachedDataManager = $attachedDataManager;
+
   }
 
   /**
@@ -73,11 +75,13 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
   public function init(
     ViewExecutable $view, DisplayPluginBase $display, array &$options = null
   ) {
+
     parent::init($view, $display, $options);
 
     $this->definition['options callback'] = [
       $this->attachedDataManager, 'getAttachedDataTypeOptionValues'
     ];
+
   }
 
 }

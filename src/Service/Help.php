@@ -37,6 +37,7 @@ class Help implements HelpInterface {
   ): MarkupInterface|array|string {
 
     switch ($routeName) {
+
       case 'omnipedia_attached_data.configuration':
 
         return $this->getConfigurationHelp();

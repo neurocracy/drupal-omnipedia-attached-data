@@ -47,6 +47,7 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
    * {@inheritdoc}
    */
   public function validate($value, Constraint $constraint) {
+
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $value->getEntity();
 
@@ -55,6 +56,7 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
     $typePluginId = $entity->type->value;
 
     foreach ($value as $delta => $item) {
+
       // Have the plug-in manager validate the target with the appropriate
       // plug-in.
       /** @var \Drupal\Core\StringTranslation\TranslatableMarkup[] */
@@ -67,7 +69,9 @@ class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator
           $constraint->message, ['%error' => $error]
         );
       }
+
     }
+
   }
 
 }

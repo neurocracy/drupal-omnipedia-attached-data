@@ -75,12 +75,14 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     TranslationInterface        $stringTranslation,
     TimelineInterface           $timeline
   ) {
+
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
     $this->entityTypeManager  = $entityTypeManager;
     $this->renderer           = $renderer;
     $this->stringTranslation  = $stringTranslation;
     $this->timeline           = $timeline;
+
   }
 
   /**
@@ -149,6 +151,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
    * @todo Can we instead return a render array rather than rendering here?
    */
   public function getContent(string $target, $date = null): ?string {
+
     // Check that the $target parameter passes validation and return here if it
     // doesn't.
     if (count($this->validateTarget($target)) > 0) {
@@ -169,6 +172,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     // Loop through all found attached data entities, looking for one that
     // matches our criteria.
     foreach ($entities as $id => $entity) {
+
       // Ignore this attached data entity if its date range does not fall within
       // the provided date. Note that we include unpublished dates so that this
       // can apply to unpublished content that has no published content for that
@@ -188,9 +192,11 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
       //   Translates this context to CommonMark document data and removes any
       //   context elements that are found.
       foreach ($renderArray['#items'] as $key => $item) {
+
         $renderArray[$key]['#text'] =
           '<omnipedia-context context="attachedData"/>' .
           $renderArray[$key]['#text'];
+
       }
 
       /** @var string */
@@ -202,6 +208,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     }
 
     if (\is_string($markup)) {
+
       // Replace any newlines that weren't handled by CommonMark with <br>
       // elements - note that two or more newlines are converted by CommonMark
       // into <p> elements, so we don't need to do any fancy checking here. This
@@ -212,6 +219,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     }
 
     return $markup;
+
   }
 
   /**

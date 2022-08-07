@@ -56,6 +56,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     CacheBackendInterface   $cacheBackend,
     ModuleHandlerInterface  $moduleHandler
   ) {
+
     parent::__construct(
       // This tells the plug-in manager to look for OmnipediaAttachedData
       // plug-ins in the 'src/Plugin/Omnipedia/AttachedData' subdirectory of any
@@ -88,6 +89,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     // annotations are read, and then the resulting data is cached using the
     // provided cache backend.
     $this->setCacheBackend($cacheBackend, 'omnipedia_attached_data_info');
+
   }
 
   /**
@@ -118,10 +120,12 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    * @see https://www.drupal.org/node/2181331
    */
   protected function sortAttachedDataTypes(array &$types): void {
+
     \uasort(
       $types,
       ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']
     );
+
   }
 
   /**
@@ -131,21 +135,25 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    *   An array of integer weights, keyed by attached data type machine names.
    */
   protected function getAttachedDataTypeWeights(): array {
+
     /** @var array|null */
-    $weightConfig = $this->configFactory
-      ->get($this->getAttachedDataSettingsConfigName())->get('type_weights');
+    $weightConfig = $this->configFactory->get(
+      $this->getAttachedDataSettingsConfigName()
+    )->get('type_weights');
 
     if (!\is_array($weightConfig)) {
       return [];
     }
 
     return $weightConfig;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function saveAttachedDataTypeWeights(array $types): void {
+
     /** @var array */
     $existingTypes = $this->getAttachedDataTypes(false);
 
@@ -166,6 +174,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
       )
       ->set('type_weights', $typeWeights)
       ->save();
+
   }
 
   /**
@@ -174,6 +183,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    * @todo Can we cache most of this or is the performance impact negligible?
    */
   public function getAttachedDataTypes(bool $sorted = true): array {
+
     /** @var array */
     $definitions = $this->getDefinitions();
 
@@ -201,12 +211,14 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     }
 
     return $types;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function getAttachedDataTypeOptionValues(): array {
+
     /** @var array */
     $types = $this->getAttachedDataTypes();
 
@@ -218,12 +230,14 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     }
 
     return $values;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function getAttachedDataTypeDefaultValue(): ?string {
+
     /** @var array */
     $types = $this->getAttachedDataTypes();
 
@@ -231,6 +245,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
 
     // Returns the first types's machine name as the default value.
     return \key($types);
+
   }
 
   /**
@@ -239,6 +254,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   public function getAttachedDataTypeLabel(
     string $machineName
   ): TranslatableMarkup|string {
+
     /** @var array */
     $definitions = $this->getDefinitions();
 
@@ -247,16 +263,19 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     } else {
       return '';
     }
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function validateTarget(string $pluginId, string $target): array {
+
     /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
     $instance = $this->createInstance($pluginId, []);
 
     return $instance->validateTarget($target);
+
   }
 
   /**
@@ -265,10 +284,12 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
   public function getContent(
     string $pluginId, string $target, $date = null
   ): ?string {
+
     /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
     $instance = $this->createInstance($pluginId, []);
 
     return $instance->getContent($target, $date);
+
   }
 
 
@@ -290,6 +311,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
    * {@inheritdoc}
    */
   public function getAttachments(): array {
+
     /** @var array */
     $attachments = [
       'drupalSettings' => ['omnipedia' => ['attachedData' => [
@@ -302,6 +324,7 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
     $definitions = $this->getDefinitions();
 
     foreach ($definitions as $pluginId => $definition) {
+
       /** @var \Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface */
       $instance = $this->createInstance($pluginId, []);
 
@@ -310,9 +333,11 @@ class OmnipediaAttachedDataManager extends DefaultPluginManager implements Omnip
         $attachments,
         $instance->getAttachements()
       );
+
     }
 
     return $attachments;
+
   }
 
 }

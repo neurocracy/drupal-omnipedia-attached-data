@@ -55,6 +55,7 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
    *   OmnipediaAttachedDataManagerInterface::getContent().
    */
   public function onWikimediaLinkBuild(WikimediaLinkBuildEvent $event): void {
+
     /** @var \League\CommonMark\Inline\Element\Link */
     $link = $event->getLink();
 
@@ -82,9 +83,11 @@ class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
       // Save a copy of the attached data content with tags stripped to the
       // title attribute as a fallback if our JavaScript fails for whatever
       // reason.
-      $link->data['attributes']['title'] =
-        Html::escape(\strip_tags($attachedDataContent));
+      $link->data['attributes']['title'] = Html::escape(\strip_tags(
+        $attachedDataContent
+      ));
     }
+
   }
 
 }

@@ -37,9 +37,11 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
     ConfigFactoryInterface                $configFactory,
     OmnipediaAttachedDataManagerInterface $attachedDataManager
   ) {
+
     parent::__construct($configFactory);
 
     $this->attachedDataManager = $attachedDataManager;
+
   }
 
   /**
@@ -63,15 +65,18 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
+
     return [
       $this->attachedDataManager->getAttachedDataSettingsConfigName(),
     ];
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+
     /** @var array */
     $types = $this->attachedDataManager->getAttachedDataTypes();
 
@@ -127,12 +132,14 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
     }
 
     return parent::buildForm($form, $form_state);
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
     /** @var array */
     $weights = [];
 
@@ -143,6 +150,7 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
     $this->attachedDataManager->saveAttachedDataTypeWeights($weights);
 
     parent::submitForm($form, $form_state);
+
   }
 
 }
