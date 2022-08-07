@@ -21,6 +21,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
     EntityInterface $entity, $operation, AccountInterface $account
   ) {
 
+    /** @var string|bool */
     $adminPermission = $this->entityType->getAdminPermission();
 
     if ($account->hasPermission($adminPermission)) {
@@ -60,6 +61,7 @@ class OmnipediaAttachedDataAccessControlHandler extends EntityAccessControlHandl
     AccountInterface $account, array $context, $entityBundle = null
   ) {
 
+    /** @var string|bool */
     $adminPermission = $this->entityType->getAdminPermission();
 
     // Admin permission overrides all others.
