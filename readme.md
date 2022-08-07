@@ -16,6 +16,24 @@ part of this codebase is useful or will inspire someone out there.
 
 ----
 
+# Description
+
+Attached data is our internal name for the content displayed in pop-ups on
+Omnipedia. It quickly became apparent during development that we couldn't
+manually embed all the pop-up content because it would be a nightmare to keep up
+to date. We needed to be able to define pop-up content once and have a system
+automatically attach it where ever it's referenced. The resulting system allows
+editors to define each one as their own entities which are then automatically
+attached to all wiki pages that reference them.
+
+There are currently two types of attached data:
+
+1. Abbreviations: These define the many abbreviations used across Omnipedia; the target string is the abbreviated form and the content is the fully spelled out form.
+
+2. Wikimedia links: These are the paragraph-length pop-ups found all across Omnipedia; the target string is a topic name, and the content is what is displayed in the pop-up; these are so named because at one point we intended these to actually link off-site to Wikipedia and related sites, but decided against it.
+
+----
+
 # Planned improvements
 
 * [Port date-related attached data functionality to the omnipedia_date module](https://github.com/neurocracy/drupal-omnipedia-attached-data/issues/1)
