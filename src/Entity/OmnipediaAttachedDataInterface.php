@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\omnipedia_attached_data\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;

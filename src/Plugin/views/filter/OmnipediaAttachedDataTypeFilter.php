@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\omnipedia_attached_data\Plugin\views\filter;
 
 use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
