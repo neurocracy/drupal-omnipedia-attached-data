@@ -42,7 +42,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
    *   The Drupal entity repository service.
    *
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleNnfo
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleInfo
    *   The Drupal entity type bundle service.
    *
    * @param \Drupal\Component\Datetime\TimeInterface $time
@@ -56,13 +56,13 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
    */
   public function __construct(
     EntityRepositoryInterface     $entityRepository,
-    EntityTypeBundleInfoInterface $entityTypeBundleNnfo = null,
+    EntityTypeBundleInfoInterface $entityTypeBundleInfo = null,
     TimeInterface                 $time = null,
     LoggerInterface               $loggerChannel,
     MessengerInterface            $messenger
   ) {
 
-    parent::__construct($entityRepository, $entityTypeBundleNnfo, $time);
+    parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
 
     $this->loggerChannel  = $loggerChannel;
     $this->messenger      = $messenger;
