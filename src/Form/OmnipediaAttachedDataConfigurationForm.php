@@ -25,7 +25,7 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
   protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
-   * Constructs an OmnipediaAttachedDataConfigurationForm object.
+   * Constructor; saves dependencies.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The factory for configuration objects.
@@ -39,7 +39,6 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
   ) {
     parent::__construct($configFactory);
 
-    // Save dependencies.
     $this->attachedDataManager = $attachedDataManager;
   }
 

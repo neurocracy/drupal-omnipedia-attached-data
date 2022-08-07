@@ -44,7 +44,7 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
   protected TimelineInterface $timeline;
 
   /**
-   * Constructs an OmnipediaAttachedDataBase object.
+   * Constructor; saves dependencies.
    *
    * @param array $configuration
    *   A configuration array containing information about the plug-in instance.
@@ -77,7 +77,6 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
-    // Save dependencies.
     $this->entityTypeManager  = $entityTypeManager;
     $this->renderer           = $renderer;
     $this->stringTranslation  = $stringTranslation;

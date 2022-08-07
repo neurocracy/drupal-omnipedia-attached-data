@@ -27,7 +27,7 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
   protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
-   * Constructs an OmnipediaAttachedDataTypeFilter object.
+   * Constructor; saves dependencies.
    *
    * @param array $configuration
    *   A configuration array containing information about the plug-in instance.
@@ -47,7 +47,6 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
-    // Save dependencies.
     $this->attachedDataManager = $attachedDataManager;
   }
 

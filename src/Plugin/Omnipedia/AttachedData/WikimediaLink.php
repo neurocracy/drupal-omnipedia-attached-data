@@ -51,7 +51,6 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
       $entityTypeManager, $renderer, $stringTranslation, $timeline
     );
 
-    // Save dependencies.
     $this->wikimediaLink = $wikimediaLink;
   }
 

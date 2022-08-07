@@ -36,7 +36,6 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
   ) {
     parent::__construct($entityType, $storage);
 
-    // Save dependencies.
     $this->timeline = $timeline;
   }
 

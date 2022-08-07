@@ -36,7 +36,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
   protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
 
   /**
-   * Constructs this filter object.
+   * Filter constructor; saves dependencies.
    *
    * @param array $configuration
    *   A configuration array containing information about the plug-in instance.
@@ -57,7 +57,6 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
   ) {
     parent::__construct($configuration, $pluginID, $pluginDefinition);
 
-    // Save dependencies.
     $this->attachedDataManager = $attachedDataManager;
   }
 

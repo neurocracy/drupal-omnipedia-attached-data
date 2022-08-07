@@ -31,7 +31,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
   protected TimelineInterface $timeline;
 
   /**
-   * Constructs an OmnipediaAttachedDataDateRangeValidator object.
+   * Constructor; saves dependencies.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entityStorage
    *   The Omnipedia attached data entity storage.
@@ -43,7 +43,6 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
     EntityStorageInterface  $entityStorage,
     TimelineInterface       $timeline
   ) {
-    // Save dependencies.
     $this->entityStorage  = $entityStorage;
     $this->timeline       = $timeline;
   }
