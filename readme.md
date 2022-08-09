@@ -53,3 +53,31 @@ There are currently two types of attached data:
 * Several [```ambientimpact_*``` modules](https://github.com/Ambient-Impact/drupal-modules) must be present.
 
 * The [`drupal/omnipedia_content`](https://github.com/neurocracy/drupal-omnipedia-content), [`drupal/omnipedia_core`](https://github.com/neurocracy/drupal-omnipedia-core), and [`drupal/omnipedia_date`](https://github.com/neurocracy/drupal-omnipedia-date) modules must be present.
+
+----
+
+# Installation
+
+## Composer
+
+Ensure that you have your Drupal installation set up with the correct Composer
+installer types such as those provided by [the ```drupal\recommended-project```
+template](https://www.drupal.org/docs/develop/using-composer/starting-a-site-using-drupal-composer-project-templates#s-drupalrecommended-project).
+If you're starting from scratch, simply requiring that template and following
+[the Drupal.org Composer
+documentation](https://www.drupal.org/docs/develop/using-composer/starting-a-site-using-drupal-composer-project-templates)
+should get you up and running.
+
+Then, in your root ```composer.json```, add the following to the
+```"repositories"``` section:
+
+```
+{
+  "type": "vcs",
+  "url": "https://github.com/neurocracy/drupal-omnipedia-attached-data.git"
+}
+```
+
+Then, in your project's root, run ```composer require
+"drupal/omnipedia_attached_data:3.x-dev@dev"``` to have Composer install the module
+and its required dependencies for you.
