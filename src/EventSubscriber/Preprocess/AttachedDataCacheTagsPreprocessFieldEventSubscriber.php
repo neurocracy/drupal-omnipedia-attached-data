@@ -29,14 +29,14 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The Omnipedia wiki node resolver service.
    *
    * @var \Drupal\omnipedia_core\Service\WikiNodeResolverInterface
    */
-  protected $wikiNodeResolver;
+  protected WikiNodeResolverInterface $wikiNodeResolver;
 
   /**
    * Event subscriber constructor; saves dependencies.
