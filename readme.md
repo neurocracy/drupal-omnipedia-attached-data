@@ -51,3 +51,5 @@ There are currently two types of attached data:
 ## Drupal dependencies
 
 * Several [```ambientimpact_*``` modules](https://github.com/Ambient-Impact/drupal-modules) must be present.
+
+* The [`drupal/omnipedia_content`](https://github.com/neurocracy/drupal-omnipedia-content), [`drupal/omnipedia_core`](https://github.com/neurocracy/drupal-omnipedia-core), and [`drupal/omnipedia_date`](https://github.com/neurocracy/drupal-omnipedia-date) modules must be present.
