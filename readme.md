@@ -95,3 +95,5 @@ The following major version bumps indicate breaking changes:
   * Requires Drupal 9.5 or [Drupal 10](https://www.drupal.org/project/drupal/releases/10.0.0).
 
   * Increases minimum version of [Hook Event Dispatcher](https://www.drupal.org/project/hook_event_dispatcher) to 3.1 and adds support for 4.0 which supports Drupal 10.
+
+  * Removes the `omnipedia_attached_data_migrate` module; you can still find it in the 3.x branch.
