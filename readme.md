@@ -53,7 +53,7 @@ There are currently two types of attached data:
 Before attempting to install this, you must add the Composer repositories as
 described in the installation instructions for these dependencies:
 
-* Several of the [`ambientimpact_*` modules](https://github.com/Ambient-Impact/drupal-modules).
+* The [`ambientimpact_core`](https://github.com/Ambient-Impact/drupal-ambientimpact-core) and [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) modules.
 
 * The [`omnipedia_content`](https://github.com/neurocracy/drupal-omnipedia-content), [`omnipedia_core`](https://github.com/neurocracy/drupal-omnipedia-core), and [`omnipedia_date`](https://github.com/neurocracy/drupal-omnipedia-date) modules.
 
