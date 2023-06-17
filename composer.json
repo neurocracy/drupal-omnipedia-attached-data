@@ -3,6 +3,10 @@
   "description": "Omnipedia - Attached data",
   "type": "drupal-custom-module",
   "license": "GPL-2.0-or-later",
+  "support": {
+    "docs": "https://github.com/neurocracy/drupal-omnipedia-attached-data",
+    "source": "https://github.com/neurocracy/drupal-omnipedia-attached-data"
+  },
   "authors": [
     {
       "name": "Ambient.Impact",
