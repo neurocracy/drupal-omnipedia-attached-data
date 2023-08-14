@@ -161,17 +161,21 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
     /** @var \Drupal\Core\Entity\EntityStorageInterface */
     $storage = $this->entityTypeManager->getStorage('omnipedia_attached_data');
 
-    /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
-    $entities = $storage->loadByProperties([
-      'target' => $this->alterTarget($target, $date),
-    ]);
+    /** @var string[] Zero or more attached entity IDs, keyed by their most recent revision ID. */
+    $queryResult = ($storage->getQuery())
+      ->condition('target', $this->alterTarget($target, $date))
+      ->accessCheck(true)
+      ->execute();
 
     /** @var string|null */
     $markup = null;
 
     // Loop through all found attached data entities, looking for one that
     // matches our criteria.
-    foreach ($entities as $id => $entity) {
+    foreach ($queryResult as $revisionId => $id) {
+
+      /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
+      $entity = $storage->load($id);
 
       // Ignore this attached data entity if its date range does not fall within
       // the provided date. Note that we include unpublished dates so that this

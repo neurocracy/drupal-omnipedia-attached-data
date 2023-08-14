@@ -124,12 +124,16 @@ class Abbreviation extends OmnipediaAttachedDataBase {
 
     $abbreviations = [];
 
-    /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
-    $entities = $this->attachedDataStorage->loadByProperties([
-      'type' => 'abbreviation',
-    ]);
+    /** @var string[] Zero or more attached entity IDs, keyed by their most recent revision ID. */
+    $queryResult = ($this->attachedDataStorage->getQuery())
+      ->condition('type', 'abbreviation')
+      ->accessCheck(true)
+      ->execute();
 
-    foreach ($entities as $id => $entity) {
+    foreach ($queryResult as $revisionId => $id) {
+
+      /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
+      $entity = $this->attachedDataStorage->load($id);
 
       // Ignore this attached data entity if its date range does not fall within
       // the provided date. Note that we include unpublished dates so that this

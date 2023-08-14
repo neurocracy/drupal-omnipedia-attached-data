@@ -66,14 +66,18 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $value->getEntity();
 
-    /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
-    $otherEntities = $this->entityStorage->loadByProperties([
-      'type'    => $entity->type->value,
-      'target'  => $entity->target->value,
-    ]);
+    /** @var string[] Zero or more attached entity IDs, keyed by their most recent revision ID. */
+    $queryResult = ($this->entityStorage->getQuery())
+      ->condition('type',   $entity->type->value)
+      ->condition('target', $entity->target->value)
+      // Exclude the entity being validated, as it'll always overlap with
+      // itself.
+      ->condition('id', $entity->id(), '<>')
+      ->accessCheck(true)
+      ->execute();
 
-    // Remove the entity being validated, as it'll always overlap with itself.
-    unset($otherEntities[$entity->id()]);
+    /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
+    $otherEntities = $this->entityStorage->loadMultiple($queryResult);
 
     // If there are no other attached data with the same target, the date
     // range is considered valid.
