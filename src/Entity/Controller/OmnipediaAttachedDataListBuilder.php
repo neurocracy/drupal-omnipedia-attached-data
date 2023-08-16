@@ -17,13 +17,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
 
   /**
-   * The Omnipedia timeline service.
-   *
-   * @var \Drupal\omnipedia_date\Service\TimelineInterface
-   */
-  protected TimelineInterface $timeline;
-
-  /**
    * {@inheritdoc}
    *
    * @param \Drupal\omnipedia_date\Service\TimelineInterface $timeline
@@ -32,12 +25,10 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
   public function __construct(
     EntityTypeInterface     $entityType,
     EntityStorageInterface  $storage,
-    TimelineInterface       $timeline
+    protected readonly TimelineInterface $timeline,
   ) {
 
     parent::__construct($entityType, $storage);
-
-    $this->timeline = $timeline;
 
   }
 
