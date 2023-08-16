@@ -40,8 +40,13 @@ class OmnipediaAttachedDataListBuilder extends EntityListBuilder {
   ) {
     return new static(
       $entityType,
+      // This is normally a bad practice to save the actual storage instead of
+      // requesting when actually needed, but we're extending the core class
+      // that does this so ugh.
+      //
+      // @see https://mglaman.dev/blog/dependency-injection-anti-patterns-drupal
       $container->get('entity_type.manager')->getStorage($entityType->id()),
-      $container->get('omnipedia.timeline')
+      $container->get('omnipedia.timeline'),
     );
   }
 
