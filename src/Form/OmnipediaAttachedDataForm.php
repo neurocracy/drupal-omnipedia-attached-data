@@ -10,7 +10,6 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -28,13 +27,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   via dependency injection.
  */
 class OmnipediaAttachedDataForm extends ContentEntityForm {
-
-  /**
-   * Our logger channel.
-   *
-   * @var \Psr\Log\LoggerInterface
-   */
-  protected LoggerInterface $loggerChannel;
 
   /**
    * Form constructor; saves dependencies.
@@ -58,14 +50,11 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
     EntityRepositoryInterface     $entityRepository,
     EntityTypeBundleInfoInterface $entityTypeBundleInfo = null,
     TimeInterface                 $time = null,
-    LoggerInterface               $loggerChannel,
-    MessengerInterface            $messenger
+    protected readonly LoggerInterface $loggerChannel,
+    protected $messenger,
   ) {
 
     parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
-
-    $this->loggerChannel  = $loggerChannel;
-    $this->messenger      = $messenger;
 
   }
 
@@ -78,7 +67,7 @@ class OmnipediaAttachedDataForm extends ContentEntityForm {
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
       $container->get('logger.channel.omnipedia_attached_data'),
-      $container->get('messenger')
+      $container->get('messenger'),
     );
   }
 

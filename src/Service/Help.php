@@ -8,7 +8,6 @@ use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
 use Drupal\omnipedia_core\Service\HelpInterface;
 
@@ -25,9 +24,7 @@ class Help implements HelpInterface {
    * @param \Drupal\Core\StringTranslation\TranslationInterface $stringTranslation
    *   The Drupal string translation service.
    */
-  public function __construct(TranslationInterface $stringTranslation) {
-    $this->stringTranslation = $stringTranslation;
-  }
+  public function __construct(protected $stringTranslation) {}
 
   /**
    * {@inheritdoc}

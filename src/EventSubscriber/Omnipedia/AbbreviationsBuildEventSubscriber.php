@@ -16,20 +16,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class AbbreviationsBuildEventSubscriber implements EventSubscriberInterface{
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
-   * The Omnipedia timeline service.
-   *
-   * @var \Drupal\omnipedia_date\Service\TimelineInterface
-   */
-  protected TimelineInterface $timeline;
-
-  /**
    * Event subscriber constructor; saves dependencies.
    *
    * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
@@ -39,12 +25,9 @@ class AbbreviationsBuildEventSubscriber implements EventSubscriberInterface{
    *   The Omnipedia timeline service.
    */
   public function __construct(
-    OmnipediaAttachedDataManagerInterface $attachedDataManager,
-    TimelineInterface                     $timeline
-  ) {
-    $this->attachedDataManager  = $attachedDataManager;
-    $this->timeline             = $timeline;
-  }
+    protected readonly OmnipediaAttachedDataManagerInterface  $attachedDataManager,
+    protected readonly TimelineInterface                      $timeline,
+  ) {}
 
   /**
    * {@inheritdoc}

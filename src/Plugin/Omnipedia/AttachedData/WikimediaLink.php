@@ -6,7 +6,6 @@ namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 use Drupal\omnipedia_content\Service\WikimediaLinkInterface;
 use Drupal\omnipedia_date\Service\TimelineInterface;
@@ -24,13 +23,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class WikimediaLink extends OmnipediaAttachedDataBase {
 
   /**
-   * The Omnipedia Wikimedia link service.
-   *
-   * @var \Drupal\omnipedia_content\Service\WikimediaLinkInterface
-   */
-  protected WikimediaLinkInterface $wikimediaLink;
-
-  /**
    * {@inheritdoc}
    *
    * @param \Drupal\omnipedia_content\Service\WikimediaLinkInterface $wikimediaLink
@@ -38,19 +30,17 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
    */
   public function __construct(
     array $configuration, string $pluginId, array $pluginDefinition,
-    RendererInterface           $renderer,
-    TranslationInterface        $stringTranslation,
-    TimelineInterface           $timeline,
-    EntityTypeManagerInterface  $entityTypeManager,
-    WikimediaLinkInterface      $wikimediaLink
+    EntityTypeManagerInterface $entityTypeManager,
+    RendererInterface $renderer,
+    $stringTranslation,
+    TimelineInterface $timeline,
+    protected readonly WikimediaLinkInterface $wikimediaLink,
   ) {
 
     parent::__construct(
       $configuration, $pluginId, $pluginDefinition,
-      $entityTypeManager, $renderer, $stringTranslation, $timeline
+      $entityTypeManager, $renderer, $stringTranslation, $timeline,
     );
-
-    $this->wikimediaLink = $wikimediaLink;
 
   }
 
@@ -59,15 +49,15 @@ class WikimediaLink extends OmnipediaAttachedDataBase {
    */
   public static function create(
     ContainerInterface $container,
-    array $configuration, $pluginId, $pluginDefinition
+    array $configuration, $pluginId, $pluginDefinition,
   ) {
     return new static(
       $configuration, $pluginId, $pluginDefinition,
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('string_translation'),
       $container->get('omnipedia.timeline'),
-      $container->get('entity_type.manager'),
-      $container->get('omnipedia.wikimedia_link')
+      $container->get('omnipedia.wikimedia_link'),
     );
   }
 

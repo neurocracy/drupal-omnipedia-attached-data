@@ -25,13 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class Abbreviation extends OmnipediaAttachedDataBase {
 
   /**
-   * The Omnipedia abbreviation service.
-   *
-   * @var \Drupal\omnipedia_content\Service\AbbreviationInterface
-   */
-  protected AbbreviationInterface $abbreviation;
-
-  /**
    * {@inheritdoc}
    *
    * @param \Drupal\omnipedia_content\Service\AbbreviationInterface $abbreviation
@@ -39,19 +32,17 @@ class Abbreviation extends OmnipediaAttachedDataBase {
    */
   public function __construct(
     array $configuration, string $pluginId, array $pluginDefinition,
-    RendererInterface           $renderer,
-    TranslationInterface        $stringTranslation,
-    TimelineInterface           $timeline,
-    EntityTypeManagerInterface  $entityTypeManager,
-    AbbreviationInterface       $abbreviation
+    EntityTypeManagerInterface $entityTypeManager,
+    RendererInterface $renderer,
+    $stringTranslation,
+    TimelineInterface $timeline,
+    protected readonly AbbreviationInterface  $abbreviation,
   ) {
 
     parent::__construct(
       $configuration, $pluginId, $pluginDefinition,
-      $entityTypeManager, $renderer, $stringTranslation, $timeline
+      $entityTypeManager, $renderer, $stringTranslation, $timeline,
     );
-
-    $this->abbreviation = $abbreviation;
 
   }
 
@@ -60,16 +51,16 @@ class Abbreviation extends OmnipediaAttachedDataBase {
    */
   public static function create(
     ContainerInterface $container,
-    array $configuration, $pluginId, $pluginDefinition
+    array $configuration, $pluginId, $pluginDefinition,
   ) {
 
     return new static(
       $configuration, $pluginId, $pluginDefinition,
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('string_translation'),
       $container->get('omnipedia.timeline'),
-      $container->get('entity_type.manager'),
-      $container->get('omnipedia.abbreviation')
+      $container->get('omnipedia.abbreviation'),
     );
 
   }

@@ -16,30 +16,21 @@ use Symfony\Component\Validator\ConstraintValidator;
 class OmnipediaAttachedDataTargetConstraintValidator extends ConstraintValidator implements ContainerInjectionInterface {
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
    * Constructor; saves dependencies.
    *
    * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
-  ) {
-    $this->attachedDataManager = $attachedDataManager;
-  }
+    protected readonly OmnipediaAttachedDataManagerInterface $attachedDataManager,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('plugin.manager.omnipedia_attached_data')
+      $container->get('plugin.manager.omnipedia_attached_data'),
     );
   }
 

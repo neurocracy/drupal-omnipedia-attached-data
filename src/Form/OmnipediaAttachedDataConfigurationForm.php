@@ -18,13 +18,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
    * Constructor; saves dependencies.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
@@ -34,13 +27,11 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(
-    ConfigFactoryInterface                $configFactory,
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
+    ConfigFactoryInterface $configFactory,
+    protected readonly OmnipediaAttachedDataManagerInterface $attachedDataManager,
   ) {
 
     parent::__construct($configFactory);
-
-    $this->attachedDataManager = $attachedDataManager;
 
   }
 
@@ -50,7 +41,7 @@ class OmnipediaAttachedDataConfigurationForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('plugin.manager.omnipedia_attached_data')
+      $container->get('plugin.manager.omnipedia_attached_data'),
     );
   }
 

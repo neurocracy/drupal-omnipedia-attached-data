@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\omnipedia_attached_data\Plugin\Validation\Constraint;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
@@ -17,44 +17,26 @@ use Symfony\Component\Validator\ConstraintValidator;
 class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implements ContainerInjectionInterface {
 
   /**
-   * The Omnipedia attached data entity storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected EntityStorageInterface $entityStorage;
-
-  /**
-   * The Omnipedia timeline service.
-   *
-   * @var \Drupal\omnipedia_date\Service\TimelineInterface
-   */
-  protected TimelineInterface $timeline;
-
-  /**
    * Constructor; saves dependencies.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $entityStorage
-   *   The Omnipedia attached data entity storage.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The Drupal entity type plug-in manager.
    *
    * @param \Drupal\omnipedia_date\Service\TimelineInterface $timeline
    *   The Omnipedia timeline service.
    */
   public function __construct(
-    EntityStorageInterface  $entityStorage,
-    TimelineInterface       $timeline
-  ) {
-    $this->entityStorage  = $entityStorage;
-    $this->timeline       = $timeline;
-  }
+    protected readonly EntityTypeManagerInterface $entityTypeManager,
+    protected readonly TimelineInterface $timeline,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')
-        ->getStorage('omnipedia_attached_data'),
-      $container->get('omnipedia.timeline')
+      $container->get('entity_type.manager'),
+      $container->get('omnipedia.timeline'),
     );
   }
 
@@ -66,8 +48,11 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
     $entity = $value->getEntity();
 
+    /** @var \Drupal\Core\Entity\EntityStorageInterface The Omnipedia attached data entity storage. */
+    $storage = $this->entityTypeManager->getStorage('omnipedia_attached_data');
+
     /** @var string[] Zero or more attached entity IDs, keyed by their most recent revision ID. */
-    $queryResult = ($this->entityStorage->getQuery())
+    $queryResult = ($storage->getQuery())
       ->condition('type',   $entity->type->value)
       ->condition('target', $entity->target->value)
       // Exclude the entity being validated, as it'll always overlap with
@@ -77,7 +62,7 @@ class OmnipediaAttachedDataDateRangeValidator extends ConstraintValidator implem
       ->execute();
 
     /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface[] */
-    $otherEntities = $this->entityStorage->loadMultiple($queryResult);
+    $otherEntities = $storage->loadMultiple($queryResult);
 
     // If there are no other attached data with the same target, the date
     // range is considered valid.

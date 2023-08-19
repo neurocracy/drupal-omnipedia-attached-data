@@ -25,20 +25,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscriberInterface {
 
   /**
-   * The Drupal entity type plug-in manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
-   * The Omnipedia wiki node resolver service.
-   *
-   * @var \Drupal\omnipedia_core\Service\WikiNodeResolverInterface
-   */
-  protected WikiNodeResolverInterface $wikiNodeResolver;
-
-  /**
    * Event subscriber constructor; saves dependencies.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -48,12 +34,9 @@ class AttachedDataCacheTagsPreprocessFieldEventSubscriber implements EventSubscr
    *   The Omnipedia wiki node resolver service.
    */
   public function __construct(
-    EntityTypeManagerInterface  $entityTypeManager,
-    WikiNodeResolverInterface   $wikiNodeResolver
-  ) {
-    $this->entityTypeManager  = $entityTypeManager;
-    $this->wikiNodeResolver   = $wikiNodeResolver;
-  }
+    protected readonly EntityTypeManagerInterface $entityTypeManager,
+    protected readonly WikiNodeResolverInterface  $wikiNodeResolver,
+  ) {}
 
   /**
    * {@inheritdoc}

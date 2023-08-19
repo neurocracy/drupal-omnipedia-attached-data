@@ -29,13 +29,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
    * Filter constructor; saves dependencies.
    *
    * @param array $configuration
@@ -53,12 +46,10 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
    */
   public function __construct(
     array $configuration, string $pluginID, array $pluginDefinition,
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
+    protected readonly OmnipediaAttachedDataManagerInterface $attachedDataManager,
   ) {
 
     parent::__construct($configuration, $pluginID, $pluginDefinition);
-
-    $this->attachedDataManager = $attachedDataManager;
 
   }
 
@@ -71,7 +62,7 @@ class OmnipediaAttachedDataAttachmentsFilter extends FilterBase implements Conta
   ) {
     return new static(
       $configuration, $pluginID, $pluginDefinition,
-      $container->get('plugin.manager.omnipedia_attached_data')
+      $container->get('plugin.manager.omnipedia_attached_data'),
     );
   }
 

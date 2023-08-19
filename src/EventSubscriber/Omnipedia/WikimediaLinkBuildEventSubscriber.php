@@ -17,23 +17,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class WikimediaLinkBuildEventSubscriber implements EventSubscriberInterface{
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
    * Event subscriber constructor; saves dependencies.
    *
    * @param \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface $attachedDataManager
    *   The OmnipediaAttachedData plug-in manager.
    */
   public function __construct(
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
-  ) {
-    $this->attachedDataManager = $attachedDataManager;
-  }
+    protected readonly OmnipediaAttachedDataManagerInterface $attachedDataManager,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -10,7 +10,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
 use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -21,27 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class OmnipediaAttachedDataBase extends PluginBase implements ContainerFactoryPluginInterface, OmnipediaAttachedDataInterface {
 
   use StringTranslationTrait;
-
-  /**
-   * The Drupal entity type plug-in manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
-   * The Drupal renderer service.
-   *
-   * @var \Drupal\Core\Render\RendererInterface
-   */
-  protected RendererInterface $renderer;
-
-  /**
-   * The Omnipedia timeline service.
-   *
-   * @var \Drupal\omnipedia_date\Service\TimelineInterface
-   */
-  protected TimelineInterface $timeline;
 
   /**
    * Constructor; saves dependencies.
@@ -70,18 +48,13 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
    */
   public function __construct(
     array $configuration, string $pluginId, array $pluginDefinition,
-    EntityTypeManagerInterface  $entityTypeManager,
-    RendererInterface           $renderer,
-    TranslationInterface        $stringTranslation,
-    TimelineInterface           $timeline
+    protected readonly EntityTypeManagerInterface $entityTypeManager,
+    protected readonly RendererInterface $renderer,
+    protected $stringTranslation,
+    protected readonly TimelineInterface $timeline,
   ) {
 
     parent::__construct($configuration, $pluginId, $pluginDefinition);
-
-    $this->entityTypeManager  = $entityTypeManager;
-    $this->renderer           = $renderer;
-    $this->stringTranslation  = $stringTranslation;
-    $this->timeline           = $timeline;
 
   }
 
@@ -90,14 +63,14 @@ abstract class OmnipediaAttachedDataBase extends PluginBase implements Container
    */
   public static function create(
     ContainerInterface $container,
-    array $configuration, $pluginId, $pluginDefinition
+    array $configuration, $pluginId, $pluginDefinition,
   ) {
     return new static(
       $configuration, $pluginId, $pluginDefinition,
       $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('string_translation'),
-      $container->get('omnipedia.timeline')
+      $container->get('omnipedia.timeline'),
     );
   }
 

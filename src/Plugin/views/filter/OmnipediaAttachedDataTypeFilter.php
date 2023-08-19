@@ -20,13 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataTypeFilter extends InOperator {
 
   /**
-   * The OmnipediaAttachedData plug-in manager.
-   *
-   * @var \Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface
-   */
-  protected OmnipediaAttachedDataManagerInterface $attachedDataManager;
-
-  /**
    * Constructor; saves dependencies.
    *
    * @param array $configuration
@@ -43,12 +36,10 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
    */
   public function __construct(
     array $configuration, $pluginId, $pluginDefinition,
-    OmnipediaAttachedDataManagerInterface $attachedDataManager
+    protected readonly OmnipediaAttachedDataManagerInterface $attachedDataManager,
   ) {
 
     parent::__construct($configuration, $pluginId, $pluginDefinition);
-
-    $this->attachedDataManager = $attachedDataManager;
 
   }
 
@@ -65,7 +56,7 @@ class OmnipediaAttachedDataTypeFilter extends InOperator {
       $configuration,
       $pluginId,
       $pluginDefinition,
-      $container->get('plugin.manager.omnipedia_attached_data')
+      $container->get('plugin.manager.omnipedia_attached_data'),
     );
   }
 

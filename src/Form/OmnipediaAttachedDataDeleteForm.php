@@ -9,7 +9,6 @@ use Drupal\Core\Entity\ContentEntityConfirmFormBase;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,19 +29,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
 
   /**
-   * Our logger channel.
-   *
-   * @var \Psr\Log\LoggerInterface
-   */
-  protected LoggerInterface $loggerChannel;
-
-  /**
    * Form constructor; saves dependencies.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository
    *   The Drupal entity repository service.
    *
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleNnfo
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleInfo
    *   The Drupal entity type bundle service.
    *
    * @param \Drupal\Component\Datetime\TimeInterface $time
@@ -56,16 +48,13 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
    */
   public function __construct(
     EntityRepositoryInterface     $entityRepository,
-    EntityTypeBundleInfoInterface $entityTypeBundleNnfo = null,
+    EntityTypeBundleInfoInterface $entityTypeBundleInfo = null,
     TimeInterface                 $time = null,
-    LoggerInterface               $loggerChannel,
-    MessengerInterface            $messenger
+    protected readonly LoggerInterface $loggerChannel,
+    protected $messenger,
   ) {
 
-    parent::__construct($entityRepository, $entityTypeBundleNnfo, $time);
-
-    $this->loggerChannel  = $loggerChannel;
-    $this->messenger      = $messenger;
+    parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
 
   }
 
@@ -78,7 +67,7 @@ class OmnipediaAttachedDataDeleteForm extends ContentEntityConfirmFormBase {
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
       $container->get('logger.channel.omnipedia_attached_data'),
-      $container->get('messenger')
+      $container->get('messenger'),
     );
   }
 
