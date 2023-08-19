@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Drupal\omnipedia_attached_data\Controller;
 
 use Drupal\Component\Utility\Xss;
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
 
 /**
  * Returns responses for OmnipediaAttachedData entity routes.
  */
-class OmnipediaAttachedDataController extends ControllerBase {
+class OmnipediaAttachedDataController {
 
   /**
    * Attached data route title callback.
