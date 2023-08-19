@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
 use Drupal\omnipedia_content\Service\AbbreviationInterface;
+use Drupal\omnipedia_date\Service\TimelineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -29,41 +33,44 @@ class Abbreviation extends OmnipediaAttachedDataBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param \Drupal\omnipedia_content\Service\AbbreviationInterface $abbreviation
+   *   The Omnipedia abbreviation service.
+   */
+  public function __construct(
+    array $configuration, string $pluginId, array $pluginDefinition,
+    RendererInterface           $renderer,
+    TranslationInterface        $stringTranslation,
+    TimelineInterface           $timeline,
+    EntityTypeManagerInterface  $entityTypeManager,
+    AbbreviationInterface       $abbreviation
+  ) {
+
+    parent::__construct(
+      $configuration, $pluginId, $pluginDefinition,
+      $entityTypeManager, $renderer, $stringTranslation, $timeline
+    );
+
+    $this->abbreviation = $abbreviation;
+
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public static function create(
     ContainerInterface $container,
     array $configuration, $pluginId, $pluginDefinition
   ) {
 
-    $instance = parent::create(
-      $container, $configuration, $pluginId, $pluginDefinition
-    );
-
-    $instance->setAbbreviationService(
+    return new static(
+      $configuration, $pluginId, $pluginDefinition,
+      $container->get('renderer'),
+      $container->get('string_translation'),
+      $container->get('omnipedia.timeline'),
+      $container->get('entity_type.manager'),
       $container->get('omnipedia.abbreviation')
-
     );
-
-    return $instance;
-
-  }
-
-  /**
-   * Set the Omnipedia abbreviation service dependency.
-   *
-   * @param \Drupal\omnipedia_content\Service\AbbreviationInterface $abbreviation
-   *   The Omnipedia abbreviation service.
-   *
-   * @return $this
-   *   The plug-in instance for chaining.
-   */
-  public function setAbbreviationService(
-    AbbreviationInterface $abbreviation
-  ): OmnipediaAttachedDataInterface {
-
-    $this->abbreviation = $abbreviation;
-
-    return $this;
 
   }
 
