@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataBase;
 use Drupal\omnipedia_attached_data\Plugin\Omnipedia\AttachedData\OmnipediaAttachedDataInterface;
 use Drupal\omnipedia_content\Service\AbbreviationInterface;
@@ -29,13 +28,6 @@ class Abbreviation extends OmnipediaAttachedDataBase {
   protected AbbreviationInterface $abbreviation;
 
   /**
-   * The Omnipedia attached data entity storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected EntityStorageInterface $attachedDataStorage;
-
-  /**
    * {@inheritdoc}
    */
   public static function create(
@@ -50,9 +42,6 @@ class Abbreviation extends OmnipediaAttachedDataBase {
     $instance->setAbbreviationService(
       $container->get('omnipedia.abbreviation')
 
-    )->setAttachedDataStorage(
-      $container->get('entity_type.manager')
-        ->getStorage('omnipedia_attached_data')
     );
 
     return $instance;
@@ -73,25 +62,6 @@ class Abbreviation extends OmnipediaAttachedDataBase {
   ): OmnipediaAttachedDataInterface {
 
     $this->abbreviation = $abbreviation;
-
-    return $this;
-
-  }
-
-  /**
-   * Set the Omnipedia attached data entity storage dependency.
-   *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $attachedDataStorage
-   *   The Omnipedia attached data entity storage.
-   *
-   * @return $this
-   *   The plug-in instance for chaining.
-   */
-  public function setAttachedDataStorage(
-    EntityStorageInterface $attachedDataStorage
-  ): OmnipediaAttachedDataInterface {
-
-    $this->attachedDataStorage = $attachedDataStorage;
 
     return $this;
 
@@ -124,8 +94,11 @@ class Abbreviation extends OmnipediaAttachedDataBase {
 
     $abbreviations = [];
 
+    /** @var \Drupal\Core\Entity\EntityStorageInterface The Omnipedia attached data entity storage. */
+    $storage = $this->entityTypeManager->getStorage('omnipedia_attached_data');
+
     /** @var string[] Zero or more attached entity IDs, keyed by their most recent revision ID. */
-    $queryResult = ($this->attachedDataStorage->getQuery())
+    $queryResult = ($storage->getQuery())
       ->condition('type', 'abbreviation')
       ->accessCheck(true)
       ->execute();
@@ -133,7 +106,7 @@ class Abbreviation extends OmnipediaAttachedDataBase {
     foreach ($queryResult as $revisionId => $id) {
 
       /** @var \Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface */
-      $entity = $this->attachedDataStorage->load($id);
+      $entity = $storage->load($id);
 
       // Ignore this attached data entity if its date range does not fall within
       // the provided date. Note that we include unpublished dates so that this
