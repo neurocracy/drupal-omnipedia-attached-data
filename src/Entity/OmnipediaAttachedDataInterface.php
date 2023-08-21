@@ -9,12 +9,13 @@ use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\omnipedia_date\Entity\EntityWithDateRangeInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
  * Provides an interface defining a OmnipediaAttachedData entity.
  */
-interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface {
+interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface, EntityWithDateRangeInterface {
 
   /**
    * Set dynamic allowed values for the type field.
@@ -78,21 +79,5 @@ interface OmnipediaAttachedDataInterface extends ContentEntityInterface, EntityO
    *   The entity title.
    */
   public function getTitle(): string;
-
-  /**
-   * Get this OmnipediaAttachedData entity's start date.
-   *
-   * @return string
-   *   Either the stored date string or the string 'first' if not set.
-   */
-  public function getStartDate(): string;
-
-  /**
-   * Get this OmnipediaAttachedData entity's end date.
-   *
-   * @return string
-   *   Either the stored date string or the string 'last' if not set.
-   */
-  public function getEndDate(): string;
 
 }

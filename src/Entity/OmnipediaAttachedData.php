@@ -14,6 +14,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\omnipedia_attached_data\Entity\OmnipediaAttachedDataInterface;
 use Drupal\omnipedia_attached_data\PluginManager\OmnipediaAttachedDataManagerInterface;
+use Drupal\omnipedia_date\Entity\EntityWithDateRangeTrait;
 use Drupal\user\UserInterface;
 
 /**
@@ -71,6 +72,7 @@ use Drupal\user\UserInterface;
 class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttachedDataInterface {
 
   use EntityChangedTrait;
+  use EntityWithDateRangeTrait;
 
   /**
    * {@inheritdoc}
@@ -149,16 +151,7 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
           'weight'  => -5,
         ]),
 
-      'date_range'  => BaseFieldDefinition::create('omnipedia_daterange')
-        ->setLabel(new TranslatableMarkup('Date range'))
-        ->setDescription(new TranslatableMarkup(
-          'The earliest and last dates this data can be attached to. The default start date of "First date" will always be attached to the earliest available date. The default end date of "Last date" will always be attached to the last available date.'
-        ))
-        // We only use the date without the time of day.
-        //
-        // @see \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem::defaultStorageSettings()
-        ->setSetting('datetime_type', 'date')
-        ->addConstraint('OmnipediaAttachedDataDateRange')
+      'date_range' => static::dateRangeBaseFieldDefinition($entityType)
         ->setDisplayOptions('form', [
           'weight'    => -3,
         ])
@@ -317,30 +310,6 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
    */
   public function label() {
     return $this->getTitle() . ' (' . $this->getTypeLabel() . ')';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getStartDate(): string {
-
-    /** @var string|null */
-    $value = $this->date_range->value;
-
-    return $value === null ? 'first' : $value;
-
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getEndDate(): string {
-
-    /** @var string|null */
-    $value = $this->date_range->end_value;
-
-    return $value === null ? 'last' : $value;
-
   }
 
 }
