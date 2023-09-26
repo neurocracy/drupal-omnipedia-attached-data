@@ -62,12 +62,9 @@ use Drupal\user\UserInterface;
  *
  * @todo Make publishable.
  *
- * @todo Create a custom storage controller to inject dependencies into this
- *   entity so we can avoid using \Drupal::service() and \t() in non-static
- *   methods.
- *
- * @see \Drupal\omnipedia_core\Storage\NodeStorage
- *   Example of how perform dependency injection into entities.
+ * @todo Remove calls to \Drupal as much as possible and decouple this entity
+ *   from services, either by using wrapped entities via the Typed Entity module
+ *   or by other means.
  */
 class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttachedDataInterface {
 
