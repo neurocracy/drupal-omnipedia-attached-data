@@ -22,7 +22,7 @@
     "drupal/hook_event_dispatcher": "^3.1 || ^4.0",
     "drupal/hux": "^1.1",
     "drupal/omnipedia_content": "6.x-dev@dev",
-    "drupal/omnipedia_core": "5.x-dev@dev",
+    "drupal/omnipedia_core": "5.x-dev@dev || 6.x-dev@dev",
     "drupal/omnipedia_date": "5.x-dev@dev",
     "symfony/css-selector": "^4.4 || ^6.2",
     "symfony/dom-crawler": "^4.4 || ^6.2"
