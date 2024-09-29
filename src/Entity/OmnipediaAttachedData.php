@@ -99,10 +99,10 @@ class OmnipediaAttachedData extends ContentEntityBase implements OmnipediaAttach
         ->setSetting('max_length', 255)
         ->setSetting(
           'allowed_values_function',
-          \get_class() . '::attachedDataTypeAllowedValuesCallback'
+          static::class . '::attachedDataTypeAllowedValuesCallback'
         )
         ->setDefaultValueCallback(
-          \get_class() . '::attachedDataTypeDefaultValueCallback'
+          static::class . '::attachedDataTypeDefaultValueCallback'
         )
         ->setRequired(true)
         ->setDisplayOptions('form', [
