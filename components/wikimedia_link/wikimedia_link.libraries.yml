@@ -3,4 +3,3 @@ component.wikimedia_link:
     wikimedia_link.js: {}
   dependencies:
     - ambientimpact_ux/component.content_popup
-    - omnipedia_content/component.omnipedia_tooltip

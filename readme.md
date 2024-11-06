@@ -87,3 +87,9 @@ The following major version bumps indicate breaking changes:
   * Increases minimum version of [Hook Event Dispatcher](https://www.drupal.org/project/hook_event_dispatcher) to 3.1 and adds support for 4.0 which supports Drupal 10.
 
   * Removes the `omnipedia_attached_data_migrate` module; you can still find it in the 3.x branch.
+
+* 5.x:
+
+  * Increased [`omnipedia_content` to 7.x](https://github.com/neurocracy/drupal-omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
+
+  * Increased [`drupal/ambientimpact_ux` to 2.x](https://github.com/Ambient-Impact/drupal-ambientimpact-ux/tree/2.x) from 1.x.

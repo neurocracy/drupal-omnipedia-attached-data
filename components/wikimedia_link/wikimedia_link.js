@@ -6,10 +6,7 @@
 // content pop-up component, displaying the text as either a tooltip or an
 // off-canvas panel, depending on the screen width.
 
-AmbientImpact.on(['contentPopUp', 'OmnipediaTooltip'], function(
-  aiContentPopUp,
-  OmnipediaTooltip
-) {
+AmbientImpact.on(['contentPopUp'], function(aiContentPopUp) {
 AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
   OmnipediaWikimediaLink, $
 ) {
