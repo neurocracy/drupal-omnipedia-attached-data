@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Rebuild libraries for 4.x to 5.x upgrade.
+ */
+function omnipedia_attached_data_update_10501(): void {
+
+  \Drupal::service('library.discovery')->clearCachedDefinitions();
+
+}
