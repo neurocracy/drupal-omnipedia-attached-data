@@ -90,8 +90,8 @@ The following major version bumps indicate breaking changes:
 
 * 5.x:
 
-  * Increased [`omnipedia_content` to 7.x](https://github.com/neurocracy/drupal-omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
-
   * Increased [`drupal/ambientimpact_ux` to 2.x](https://github.com/Ambient-Impact/drupal-ambientimpact-ux/tree/2.x) from 1.x.
+
+  * Increased [`omnipedia_content` to 7.x](https://github.com/neurocracy/drupal-omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
 
   * Removed Drupal 9.5 support as [it's now end-of-life](https://endoflife.date/drupal).
