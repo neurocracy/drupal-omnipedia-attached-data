@@ -26,7 +26,7 @@ There are currently two types of attached data:
 
 # Requirements
 
-* [Drupal 9.5 or 10](https://www.drupal.org/download) ([Drupal 8 is end-of-life](https://www.drupal.org/psa-2021-11-30))
+* [Drupal 10](https://www.drupal.org/download)
 
 * PHP 8.1
 
@@ -93,3 +93,5 @@ The following major version bumps indicate breaking changes:
   * Increased [`omnipedia_content` to 7.x](https://github.com/neurocracy/drupal-omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
 
   * Increased [`drupal/ambientimpact_ux` to 2.x](https://github.com/Ambient-Impact/drupal-ambientimpact-ux/tree/2.x) from 1.x.
+
+  * Removed Drupal 9.5 support as [it's now end-of-life](https://endoflife.date/drupal).
