@@ -6,6 +6,11 @@
 // content pop-up component, displaying the text as either a tooltip or an
 // off-canvas panel, depending on the screen width.
 
+AmbientImpact.onGlobals([
+  'drupalSettings.omnipedia.attachedData.isWikimediaLinkAttributeName',
+  'drupalSettings.omnipedia.attachedData.titleAttributeName',
+  'drupalSettings.omnipedia.attachedData.contentAttributeName',
+], () => {
 AmbientImpact.on(['contentPopUp'], function(aiContentPopUp) {
 AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
   OmnipediaWikimediaLink, $
@@ -184,5 +189,6 @@ AmbientImpact.addComponent('OmnipediaWikimediaLink', function(
 
   );
 
+});
 });
 });

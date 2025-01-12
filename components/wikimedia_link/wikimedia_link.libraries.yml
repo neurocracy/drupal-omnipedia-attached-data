@@ -2,4 +2,5 @@ component.wikimedia_link:
   js:
     wikimedia_link.js: {}
   dependencies:
+    - core/drupalSettings
     - ambientimpact_ux/component.content_popup
