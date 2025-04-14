@@ -39,7 +39,7 @@ described in the installation instructions for these dependencies:
 
 * The [`ambientimpact_core`](https://github.com/Ambient-Impact/drupal-ambientimpact-core) and [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) modules.
 
-* The [`omnipedia_content`](https://github.com/neurocracy/drupal-omnipedia-content), [`omnipedia_core`](https://github.com/neurocracy/drupal-omnipedia-core), and [`omnipedia_date`](https://github.com/neurocracy/drupal-omnipedia-date) modules.
+* The [`omnipedia_content`](https://gitlab.com/neurocracy/omnipedia/modules/omnipedia-content), [`omnipedia_core`](https://gitlab.com/neurocracy/omnipedia/modules/omnipedia-core), and [`omnipedia_date`](https://gitlab.com/neurocracy/omnipedia/modules/omnipedia-date) modules.
 
 ----
 
@@ -62,9 +62,10 @@ should get you up and running.
 In your root `composer.json`, add the following to the `"repositories"` section:
 
 ```json
-"drupal/omnipedia_attached_data": {
+{
   "type": "vcs",
-  "url": "https://github.com/neurocracy/drupal-omnipedia-attached-data.git"
+  "url": "https://gitlab.com/neurocracy/omnipedia/modules/omnipedia-attached-data.git",
+  "only": ["drupal/omnipedia_attached_data"]
 }
 ```
 
@@ -92,6 +93,6 @@ The following major version bumps indicate breaking changes:
 
   * Increased [`drupal/ambientimpact_ux` to 2.x](https://github.com/Ambient-Impact/drupal-ambientimpact-ux/tree/2.x) from 1.x.
 
-  * Increased [`omnipedia_content` to 7.x](https://github.com/neurocracy/drupal-omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
+  * Increased [`omnipedia_content` to 7.x](https://gitlab.com/neurocracy/omnipedia/modules/omnipedia-content/tree/7.x) from 6.x and removed dependency on the `omnipedia_tooltip` which was removed.
 
   * Removed Drupal 9.5 support as [it's now end-of-life](https://endoflife.date/drupal).
