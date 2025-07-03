@@ -3,3 +3,8 @@ omnipedia_attached_data.configuration:
   parent: system.admin_config_content
   description: 'Configure Omnipedia attached data.'
   route_name: omnipedia_attached_data.configuration
+
+omnipedia_attached_data.navigation_create:
+  title: 'Attached data'
+  parent: navigation.create
+  route_name: omnipedia_attached_data.add_form
