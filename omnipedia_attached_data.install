@@ -10,3 +10,12 @@ function omnipedia_attached_data_update_10501(): void {
   \Drupal::service('library.discovery')->clearCachedDefinitions();
 
 }
+
+/**
+ * Rebuild router for addition of Navigation create menu item.
+ */
+function omnipedia_attached_data_update_10502(): void {
+
+  \Drupal::service('router.builder')->rebuild();
+
+}
